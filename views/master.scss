@@ -1,0 +1,282 @@
+@import "compass/css3";
+
+$proxima            : "proxima-nova";
+$proxima-cond       : "proxima-nova-condensed";
+$proxima-extra-cond : "proxima-nova-extra-condensed";
+
+$white              : hsla(0, 100%, 100%, 1);
+$yellow             : hsla(42, 87%, 58%, 1);
+$black              : hsla(80, 3%, 18%, 1);
+$red                : hsla(10, 54%, 49%, 1);
+$green              : hsla(88, 45%, 63%, 1);
+
+$fade               : lighten($black, 50%);
+
+// =base
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  font: normal normal 100%/1.5 arial, sans-serif;
+  color: $black;
+  background: url(/img/bg.png) repeat 0 0;
+}
+
+h1 {
+  font-size: 1.5em;
+  margin: 0 0 0 0;
+}
+
+h2 {
+  font-size: 1.5em;
+  margin: 1em 0;
+}
+
+a, a:link {
+  text-decoration: underline;
+  color: $black
+}
+
+a:active, a:hover {
+  text-decoration: none;
+  background-color: $black;
+  color: $white;
+}
+
+p { margin: 1.5em 0; }
+
+abbr.created {
+  color: $fade;
+  border: none;
+}
+
+small {
+  font-size: 0.8125em;
+  line-height: 1.846;
+}
+
+p#what {
+  font-size: 1.5em;
+  font-style: italic;
+  line-height: 2;
+  margin: 2em 0;
+}
+
+ol.links {
+  list-style: none;
+  margin: 1.5em 0 1.5em 0;
+  padding: 0;
+
+  li {
+    display: block;
+    overflow: hidden;
+    padding: 0.6875em 0 0.75em 0;
+    border-bottom: 1px solid lighten($fade, 20%);
+
+    &:last-child {
+      padding-bottom: 0.75em;
+      border: none;
+    }
+  }
+}
+
+article {
+  position: relative;
+
+  h1 {
+    font-size: 1em;
+    font-weight: normal;
+    line-height: 1.5;
+
+    a {
+      display: block;
+      margin: 0 2em 0 0;
+      padding: 0 0.1875em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  a.star, a.star:hover {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    text-decoration: none;
+    font-size: 2em;
+    line-height: 0.85;
+    height: 0.85em;
+    text-align: center;
+    color: lighten($fade, 20%);
+    background-color: transparent;
+  }
+
+  a.star:active { color: $fade; }
+
+  a.star.true { color: $yellow; }
+
+  a.star.true:active { color: darken($yellow, 10%); }
+
+  footer {
+    padding: 0 0.1875em;
+
+    abbr.created {
+      font-size: 0.8125em;
+      line-height: 1.846;
+    }
+  }
+}
+
+// =layout
+
+#app {
+  margin: 0 auto;
+  max-width: 38.75em;
+}
+
+header[role=banner],
+section[role=main],
+footer[role=contentinfo] {
+  padding: 0 3px;
+}
+
+header[role=banner] {
+  overflow: hidden;
+  background: $yellow;
+  @include border-bottom-radius(6px);
+  border-width: 0 1px 1px 1px;
+  border-style: solid;
+  border-color: darken($yellow, 15%);
+  margin: 0 0 2.9375em 0;
+
+
+  h1 {
+    float: left;
+    margin: 0;
+    line-height: 3;
+
+    a, a:link {
+      padding: 0.125em;
+      text-decoration: none;
+    }
+  }
+}
+
+nav {
+  overflow: hidden;
+
+  ul {
+    float: right;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    height: 4.5em;
+
+    li {
+      display: inline-block;
+      overflow: hidden;
+      line-height: 3;
+      padding: 0.75em 0.5em;
+
+      a {
+        font-size: 0.8125em;
+        padding: 0.231em;
+        line-height: 1.846;
+      }
+
+      a.add-link span.iconic {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 1.5em;
+        margin-right: 0.15em;
+        text-decoration: none;
+        border: none;
+      }
+    }
+  }
+
+  .avatar {
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    border: 1px solid darken($yellow, 15%);
+    width: 46px;
+    height: 46px;
+  }
+}
+
+footer[role=contentinfo] {
+  border-top: 1px solid $fade;
+  margin: 2.9375em 0 0 0;
+}
+
+// =form
+
+#add-link {
+  display: none;
+  width: 20em;
+  border: 3px solid transparentize($black, 0.3);
+  @include border-radius(3px);
+}
+
+form {
+  background-color: white;
+  padding: 1.5em 1em 3em;
+  @include border-radius(3px);
+}
+
+form h2 { margin-top: 0; }
+
+label, input, textarea { display: block; }
+
+input, textarea {
+  outline: none;
+  border: 1px solid $fade;
+  font-size: 0.875em;
+  line-height: 1.286;
+  margin: 0 0 1em 0;
+  padding: 0.5em 0;
+  width: 286px;
+  &:focus { border-color: $black; }
+}
+
+textarea {
+  resize: vertical;
+  overflow: auto;
+}
+
+input.error, textarea.error { border-color: $red; }
+
+label.error {
+  color: $white;
+  background-color: $red;
+  font-size: 0.75em;
+  line-height: 2;
+  margin: 1.167em 0;
+  padding: 0 0.25em;
+}
+
+button {
+  display: inline-block;
+  color: $black;
+  font-size: 0.8125em;
+  line-height: 1.846;
+  margin: 1.231em 0 0;
+  padding: 0.31em 1em 0.231em;
+  border: 1px solid lighten($fade, 24%);
+  background-color: lighten($fade, 24%);
+  @include border-radius(3px);
+}
+
+button:hover { background: lighten($fade, 15%); }
+
+button + button { margin-left: 1.231em; }
+
+button[type=submit] {
+  background-color: $green;
+  border-color: darken($green, 7%);
+}
+
+button[type=submit]:hover { background-color: darken($green, 10%); }
+// =startup
+
+#stream, #starred { display: none; }

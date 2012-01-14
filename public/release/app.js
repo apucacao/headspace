@@ -1,0 +1,1 @@
+define(["underscore","jquery","backbone","models/Stream","models/StarredLinks","views/AddLink","views/LinkList","routers/Links"],function(a,b,c,d,e,f,g,h){b(function(){b(".add").click(function(){return new f,!1}),new h,c.history.start(),d.reset(window.appData.links),e.reset(window.appData.starredLinks)})})

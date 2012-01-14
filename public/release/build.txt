@@ -1,0 +1,17 @@
+
+main.js
+----------------
+vendor/underscore-min.js
+vendor/json2.js
+vendor/require.order-min.js
+vendor/jquery-min.js
+order!jquery
+vendor/AMDbackbone-0.5.3.js
+order!backbone
+vendor/jquery.lightbox_me.js
+order!lightbox_me
+vendor/jquery.validate-min.js
+order!validate
+vendor/jquery.timeago.js
+order!timeago
+main.js

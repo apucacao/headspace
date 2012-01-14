@@ -1,0 +1,56 @@
+doctype 5
+html
+  head
+    meta charset="utf-8"
+    link rel="stylesheet" href="/css/vendor/normalize.css"
+    link rel="stylesheet" href="/css/vendor/iconic.css"
+    link rel="stylesheet" href="/css/master.css"
+    title Headspace
+
+    - if authenticated?
+      - if development?
+        script data-main="/js/main.js" src="/js/vendor/require-min.js"
+      - else
+        script data-main="/release/main.js" src="/js/vendor/require-min.js"
+
+    - if development?
+      link rel="stylesheet" href="/css/vendor/grid.css"
+
+    - if authenticated?
+      javascript:
+        var appData = {
+          development: #{{development?}},
+          links: #{{@links.to_json}}
+        };
+  body
+    div#app
+      header role="banner"
+        nav
+          h1
+            a href="#" headspace
+          ul
+            - if authenticated?
+              li
+                a class="add-link" href=""
+                  span class="iconic plus-alt"
+                  span Contribute
+              li
+                a class="view" title="View the Stream" href="#" Stream
+              li
+                a class="view" title="View Starred Links" href="#starred" Starred
+              li
+                a title="Logout" href="/auth/logout" Logout
+              li
+                == partial :avatar, :locales => {:user => current_user.avatar}
+            - else
+              li
+                a href="/auth/google_oauth2" Login with Google
+      section role="main"
+        - if authenticated?
+          == yield
+        - else
+          == partial :what
+      footer role="contentinfo"
+        small
+          ' Headspace – a side project by
+          a href="http://albatross.io" apucacao
