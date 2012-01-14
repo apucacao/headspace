@@ -1,1 +1,0 @@
-define(["backbone","./Link"],function(a,b){var c=a.Collection.extend({model:b,url:"/links/",comparator:function(a){return a.get("created_at")}});return c})
