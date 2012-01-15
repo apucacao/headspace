@@ -1,6 +1,7 @@
 class App < Sinatra::Application
   namespace '/links' do
     before do
+      redirect '/' unless authenticated?
       content_type :json
     end
 
@@ -25,12 +26,12 @@ class App < Sinatra::Application
 
     put '/:link_id' do
       data = JSON.parse(request.body.read.to_s)
-      
+
       if !data
         status 400
       else
         link = Link.find(:id => params[:link_id])
-        if !link  
+        if !link
           status 404
         else
           starred = !!(data['starred'] || false)
