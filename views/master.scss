@@ -189,9 +189,10 @@ header {
   margin: 0 0 1.5em 0;
 }
 
-#app footer[role=contentinfo] {
+footer[role=contentinfo] {
   border-top: 1px solid $fade;
   margin: 2.9375em 0 0 0;
+  padding: 0 3px;
 }
 
 // =profile

@@ -41,32 +41,7 @@ html
       - else
         section role="main"
           == partial :what
-
-      / div#app
-      /   header role="banner"
-      /     nav
-      /       h1
-      /         a href="#" headspace
-      /       ul
-      /         - if authenticated?
-      /           li
-      /             a class="add-link" href=""
-      /               span.iconic.plus_alt
-      /               span Contribute
-      /           li
-      /             a class="view" title="View the Stream" href="#" Stream
-      /           li
-      /             a class="view" title="View Starred Links" href="#starred" Starred
-      /           li
-      /             a title="Logout" href="/auth/logout" Logout
-      /           li
-      /             == partial :avatar, :locales => {:user => current_user.avatar}
-      /         - else
-      /           li
-      /             a href="/auth/google_oauth2" Login with Google
-      /   section role="main"
-      /     == yield
-      /   footer role="contentinfo"
-      /     small
-      /       ' Headspace – a side project by
-      /       a href="http://albatross.io" apucacao
+      footer role="contentinfo"
+        small
+          ' Headspace – a side project by
+          a href="http://albatross.io" apucacao
