@@ -1,0 +1,18 @@
+body {
+  font: normal 100%/1.5 Pictos;
+}
+
+span {
+  display: block;
+  margin-bottom: 1rem;
+  text-indent: -9999px;
+}
+
+span:before {
+  color: hsl(42, 100%, 40%);
+  font-size: 2rem;
+  content: attr(data-icon);
+  text-indent: 0;
+  display: block;
+  height: 0;
+}

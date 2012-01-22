@@ -14,6 +14,7 @@ require 'sinatra/reloader'
 require 'sinatra/capture'
 require 'sinatra/content_for'
 require 'sinatra/namespace'
+require 'sinatra/json'
 require 'logger'
 
 # Application
@@ -45,6 +46,8 @@ class App < Sinatra::Application
     end
 
     set :scss, Compass.sass_engine_options
+
+    Sequel.extension :pagination
   end
 
   # Specific to the dev environment
@@ -56,7 +59,7 @@ class App < Sinatra::Application
   end
 
   configure :production do
-    set :database, Sequel.postgres('headspace', :user => 'root', :password => 'qwerty'), :loggers => [Logger.new($stdout)]
+    # production database + logging
   end
 
   configure :test do
@@ -66,6 +69,7 @@ class App < Sinatra::Application
   helpers do
     include Rack::Utils
     include Sinatra::ContentFor
+    include Sinatra::JSON
     alias_method :h, :escape_html
 
     def development?

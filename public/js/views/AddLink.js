@@ -2,15 +2,17 @@ define([
   'underscore', 'jquery', 'backbone'
 ], function(_, $, Backbone) {
 
+  'use strict';
+
   return Backbone.View.extend({
-    el: $('#add-link'),
+    events: {
+      'click .close': 'cancel'
+    },
 
-    initialize: function(options) {
-      _.bindAll(this, 'save', 'onLoad', 'onClose');
+    initialize: function() {
+      _.bindAll(this, 'save');
 
-      this.form = $('form', this.el);
-
-      this.form.validate({
+      this.validator = $('form', this.el).validate({
         debug: true,
         rules: {
           url: {
@@ -25,17 +27,22 @@ define([
         },
         submitHandler: this.save
       });
+    },
 
-      this.el.lightbox_me({
-        centered : true,
-        onLoad   : this.onLoad,
-        onClose  : this.onClose
-      });
+    open: function() {
+      $(this.el).addClass('open');
+      $('input', this.el).focus();
+    },
+
+    close: function() {
+      $('input, textarea', this.el).val('');
+      this.validator.resetForm();
+      $(this.el).removeClass('open');
     },
 
     save: function() {
       this.collection.create(this.serialize());
-      this.el.trigger('close');
+      this.close();
     },
 
     serialize: function() {
@@ -45,12 +52,9 @@ define([
       };
     },
 
-    onLoad: function() {
-      $('input', this.form).first().focus();
-    },
-
-    onClose: function() {
-      $('input, textarea', this.form).val('');
+    cancel: function(evt) {
+      evt.preventDefault();
+      this.close();
     }
   });
 

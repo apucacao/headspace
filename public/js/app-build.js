@@ -9,6 +9,7 @@
     'text'        : 'vendor/require.text-min',
     'json2'       : 'vendor/json2',
     'underscore'  : 'vendor/underscore-min',
+    'handlebars'  : 'vendor/handlebars',
     'backbone'    : 'vendor/AMDbackbone-0.5.3',
     'jquery'      : 'vendor/jquery-min',
     'validate'    : 'vendor/jquery.validate-min',

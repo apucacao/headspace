@@ -12,6 +12,26 @@ $green              : hsla(88, 45%, 63%, 1);
 
 $fade               : lighten($black, 50%);
 
+// =animations
+
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@mixin spin {
+  -webkit-animation-name: rotate;
+  -webkit-animation-duration: 1.5s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+}
+
+.hidden { display: none; }
+
 // =base
 
 html, body { margin: 0; padding: 0; }
@@ -19,11 +39,13 @@ html, body { margin: 0; padding: 0; }
 body {
   font: normal normal 100%/1.5 arial, sans-serif;
   color: $black;
-  background: url(/img/bg.png) repeat 0 0;
+  -webkit-font-smoothing: antialiased;
 }
 
+h1, h2 { font-weight: normal; }
+
 h1 {
-  font-size: 1.5em;
+  font-size: 1em;
   margin: 0 0 0 0;
 }
 
@@ -42,6 +64,19 @@ a:active, a:hover {
   background-color: $black;
   color: $white;
 }
+
+*[data-icon] {
+  font-family: Pictos;
+  display: inline-block;
+}
+
+*[data-icon]:before { content: attr(data-icon); }
+
+a[data-icon]:hover { background-color: transparent; }
+
+a[data-icon] { text-decoration: none; }
+
+a span[data-icon] { margin-right: 0.35em; }
 
 p { margin: 1.5em 0; }
 
@@ -62,32 +97,33 @@ p#what {
   margin: 2em 0;
 }
 
-ol.links {
+div#links {
   list-style: none;
   margin: 1.5em 0 1.5em 0;
   padding: 0;
+}
 
-  li {
-    display: block;
-    overflow: hidden;
-    padding: 0.6875em 0 0.75em 0;
-    border-bottom: 1px solid lighten($fade, 20%);
+.link {
+  display: block;
+  overflow: hidden;
+  padding: 0.6875em 0 0.75em 0;
+  border-bottom: 1px solid $fade;
 
-    &:last-child {
-      padding-bottom: 0.75em;
-      border: none;
-    }
+  &:last-child {
+    padding-bottom: 0.75em;
+    border: none;
+  }
+
+  &.selected {
+    background-color: lighten($fade, 30%);
   }
 }
 
-article {
+.link article {
   position: relative;
+  padding: 0 3px;
 
   h1 {
-    font-size: 1em;
-    font-weight: normal;
-    line-height: 1.5;
-
     a {
       display: block;
       margin: 0 2em 0 0;
@@ -96,25 +132,6 @@ article {
       text-overflow: ellipsis;
     }
   }
-
-  a.star, a.star:hover {
-    position: absolute;
-    top: 0;
-    right: 0px;
-    text-decoration: none;
-    font-size: 2em;
-    line-height: 0.85;
-    height: 0.85em;
-    text-align: center;
-    color: lighten($fade, 20%);
-    background-color: transparent;
-  }
-
-  a.star:active { color: $fade; }
-
-  a.star.true { color: $yellow; }
-
-  a.star.true:active { color: darken($yellow, 10%); }
 
   footer {
     padding: 0 0.1875em;
@@ -126,117 +143,354 @@ article {
   }
 }
 
+.star {
+  position: absolute;
+  top: 0;
+  right: 3px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1.5em;
+  line-height: 0.85;
+  height: 0.85em;
+  text-align: center;
+  color: $white;
+  -webkit-text-stroke: 1px lighten($fade, 20%);
+}
+
+.star.waiting, .star.true.waiting {
+  @include spin;
+  color: lighten($fade, 25%);
+  -webkit-text-stroke: 1px lighten($fade, 20%);
+}
+
+.star.waiting:before { content: '1'; }
+
+.star:active { color: lighten($fade, 25%); }
+
+.star.true {
+  color: $yellow;
+  -webkit-text-stroke: 1px darken($yellow, 15%);
+}
+
+.star.true:active { color: darken($yellow, 15%); }
+
 // =layout
 
-#app {
+#screen {
   margin: 0 auto;
   max-width: 38.75em;
+  position: relative;
 }
 
-header[role=banner],
-section[role=main],
-footer[role=contentinfo] {
-  padding: 0 3px;
+header {
+  overflow: hidden;
+  line-height: 2em;
+  padding: 1em 3px 0 3px;
+  margin: 0 0 1.5em 0;
 }
+
+#app footer[role=contentinfo] {
+  border-top: 1px solid $fade;
+  margin: 2.9375em 0 0 0;
+}
+
+// =profile
 
 header[role=banner] {
-  overflow: hidden;
-  background: $yellow;
-  @include border-bottom-radius(6px);
-  border-width: 0 1px 1px 1px;
-  border-style: solid;
-  border-color: darken($yellow, 15%);
-  margin: 0 0 2.9375em 0;
-
-
   h1 {
     float: left;
-    margin: 0;
-    line-height: 3;
+    font-weight: bold;
 
     a, a:link {
-      padding: 0.125em;
+      display: block;
       text-decoration: none;
     }
   }
 }
 
-nav {
-  overflow: hidden;
+#profile {
+  float: right;
 
-  ul {
-    float: right;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    height: 4.5em;
-
-    li {
-      display: inline-block;
-      overflow: hidden;
-      line-height: 3;
-      padding: 0.75em 0.5em;
-
-      a {
-        font-size: 0.8125em;
-        padding: 0.231em;
-        line-height: 1.846;
-      }
-
-      a.add-link span.iconic {
-        display: inline-block;
-        vertical-align: middle;
-        font-size: 1.5em;
-        margin-right: 0.15em;
-        text-decoration: none;
-        border: none;
-      }
-    }
+  a {
+    float: left;
+    font-size: 0.875em;
+    line-height: 2.286;
   }
 
   .avatar {
-    vertical-align: middle;
-    margin: 0;
-    padding: 0;
-    border: 1px solid darken($yellow, 15%);
-    width: 46px;
-    height: 46px;
+    float: right;
+    width: 1.875em;
+    margin: 0 0 0 1em;
+    text-align: center;
+    border: 1px solid lighten($fade, 10%);
+    @include border-radius(3px);
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    span {
+      display: block;
+      color: $fade;
+      background-color: lighten($fade, 30%);
+    }
   }
 }
 
-footer[role=contentinfo] {
-  border-top: 1px solid $fade;
-  margin: 2.9375em 0 0 0;
+// =status
+
+#status {
+  position: absolute;
+  top: -2.5625em; // 41px (height + shadow)
+  left: 18.375em;
+  width: 1.875em;
+  height: 1.9375em;
+  line-height: 1.9375;
+  border-width: 0 1px 1px;
+  border-style: solid;
+  border-color: lighten($fade, 10%);
+  background-color: $white;
+  text-align: center;
+  @include box-shadow($fade 0px 2px 10px);
+  @include border-bottom-radius(3px);
+  @include transition(top 0.35s ease-in-out);
+  span { display: block; }
 }
 
-// =form
+#status.open { top: 0; }
+#status.open span { @include spin; }
 
-#add-link {
-  display: none;
-  width: 20em;
-  border: 3px solid transparentize($black, 0.3);
+// =home
+a#home {
+  float: left;
+  width: 1.875em;
+  margin: 0 2em 0 0;
+  line-height: 1.875;
+  text-align: center;
+  background-color: lighten($fade, 30%);
+  border: 1px solid lighten($fade, 20%);
   @include border-radius(3px);
 }
 
-form {
-  background-color: white;
-  padding: 1.5em 1em 3em;
+a#home:hover {
+  color: $white;
+  background-color: lighten($fade, 20%);
+}
+
+a#home:active {
+  border-color: $fade;
+  background-color: $fade;
+}
+
+// =add
+a#add-link {
+  float: left;
+  width: 1.875em;
+  margin: 0 2em 0 0;
+  line-height: 1.875;
+  text-align: center;
+  background-color: lighten($fade, 30%);
+  border: 1px solid lighten($fade, 20%);
   @include border-radius(3px);
 }
 
-form h2 { margin-top: 0; }
+a#add-link:hover {
+  color: $white;
+  background-color: lighten($fade, 20%);
+}
+
+a#add-link:active {
+  border-color: $fade;
+  background-color: $fade;
+}
+
+// =filter
+// custom checkboxes
+// http://www.wufoo.com/2011/06/13/custom-radio-buttons-and-checkboxes/
+
+#star-filter {
+  float: left;
+  margin: 0 2em 0 0;
+}
+
+#star-filter:not(#foo) > input[type='checkbox'] {
+  opacity: 0;
+  float: left;
+  width: 0;
+}
+
+#star-filter:not(#foo) > input[type='checkbox'] + label {
+  float: left;
+  width: 1.875em;
+  line-height: 1.875em;
+  background-color: lighten($fade, 30%);
+  border: 1px solid lighten($fade, 20%);
+  @include border-radius(3px);
+  text-align: center;
+  cursor: pointer;
+}
+
+#star-filter:not(#foo) > input[type='checkbox']:checked + label {
+  color: $yellow;
+  background-color: lighten($yellow, 38%);
+  border-color: darken($yellow, 15%);
+  -webkit-text-stroke: 1px darken($yellow, 15%);
+}
+
+#star-filter:not(#foo) > input[type='checkbox'] + label:before {
+  margin: 0;
+  clear: none;
+}
+
+// =pagination
+
+#pagination {
+  float: right;
+  clear: both;
+  margin: 2.5em 0 0 0;
+}
+
+#pagination.empty { visibility: hidden; }
+
+#pagination .range {
+  float: right;
+  font-size: 0.8125em;
+  line-height: 2.462;
+  margin: 0 0.615em 0 0;
+}
+
+#pagination ul {
+  float: right;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    width: 2em;
+    float: left;
+
+    span {
+      display: block;
+      line-height: 1.875;
+      padding: 0 0.5em;
+      border-style: solid;
+    }
+
+    .true {
+      color: lighten($fade, 10%);
+      background-color: lighten($fade, 30%);
+      border-color: lighten($fade, 20%);
+      cursor: pointer;
+    }
+
+    .false {
+      color: lighten($fade, 25%);
+      background-color: lighten($fade, 30%);
+      border-color: lighten($fade, 25%);
+    }
+
+    .prev {
+      border-width: 1px 0 1px 1px;
+      @include border-left-radius(3px);
+    }
+
+    .next {
+      border-width: 1px 1px 1px 1px;
+      @include border-right-radius(3px);
+    }
+
+    .true:hover {
+      color: $white;
+      background-color: lighten($fade, 20%);
+    }
+
+    .true:active {
+      border-color: $fade;
+      background-color: $fade;
+    }
+  }
+}
+
+// =search
+
+#search {
+  float: right;
+  margin: 0 0 0 2em;
+
+  label, input { float: left; }
+
+  label { margin: 0 0.25em 0 0; }
+
+  input {
+    display: inline-block;
+    width: 17em;
+    margin: 0 0 0 0;
+  }
+}
+
+// =new link
+
+#dialog {
+  position: absolute;
+  top: -23.6875em; // 379px (height + shadow)
+  left: 8.75em;
+  width: 338px;
+  min-height: 369px;
+  border-width: 0 1px 1px;
+  border-style: solid;
+  border-color: lighten($fade, 10%);
+  @include box-shadow($fade 0px 2px 10px);
+  @include border-bottom-radius(3px);
+  @include transition(top 0.35s ease-in-out);
+}
+
+#dialog.open { top: 0; }
+
+#new-link {
+  background-color: $white;
+  @include border-bottom-radius(3px);
+
+  div { padding: 0 1.25em 1.5em; }
+
+  h2 {
+    font-size: 1em;
+    margin: 0 0 1.4375em 0;
+    padding: 1.5em 1.25em;
+    background-color: lighten($fade, 30%);
+    text-align: center;
+    border-bottom: 1px solid $fade;
+  }
+
+  h2 .title { display: none; }
+
+  span[data-icon] {
+    display: block;
+    font-size: 3em;
+    line-height: 1;
+  }
+
+  span[data-icon]:before {
+    color: lighten($fade, 10%);
+    -webkit-text-stroke: 1px $fade;
+  }
+
+}
+
+// =forms
 
 label, input, textarea { display: block; }
 
 input, textarea {
   outline: none;
-  border: 1px solid $fade;
+  border: 1px solid lighten($fade, 20%);
   font-size: 0.875em;
-  line-height: 1.286;
-  margin: 0 0 1em 0;
+  line-height: 1.143;
+  margin: 0 0 1.143em 0;
   padding: 0.5em 0;
-  width: 286px;
-  &:focus { border-color: $black; }
+  width: 298px;
+  @include border-radius(3px);
+  &:focus { border-color: $fade; }
 }
 
 textarea {
@@ -244,32 +498,46 @@ textarea {
   overflow: auto;
 }
 
-input.error, textarea.error { border-color: $red; }
+input.error, textarea.error {
+  border-color: $red;
+}
 
 label.error {
   color: $white;
   background-color: $red;
   font-size: 0.75em;
   line-height: 2;
-  margin: 1.167em 0;
   padding: 0 0.25em;
+  margin-bottom: 2em;
+}
+
+.actions {
+  text-align: center;
+  margin: 1.5em 0 0 0;
 }
 
 button {
   display: inline-block;
-  color: $black;
-  font-size: 0.8125em;
-  line-height: 1.846;
-  margin: 1.231em 0 0;
-  padding: 0.31em 1em 0.231em;
-  border: 1px solid lighten($fade, 24%);
-  background-color: lighten($fade, 24%);
+  font-size: 1em;
+  line-height: 1.875em;
+  background-color: lighten($fade, 30%);
+  border: 1px solid lighten($fade, 20%);
   @include border-radius(3px);
+  width: 2em;
+  padding: 0;
 }
 
-button:hover { background: lighten($fade, 15%); }
+button:hover {
+  color: $white;
+  background-color: lighten($fade, 20%);
+}
 
-button + button { margin-left: 1.231em; }
+button:active {
+  border-color: $fade;
+  background-color: $fade;
+}
+
+button + button { margin-left: 1.25em; }
 
 button[type=submit] {
   background-color: $green;
@@ -277,6 +545,3 @@ button[type=submit] {
 }
 
 button[type=submit]:hover { background-color: darken($green, 10%); }
-// =startup
-
-#stream, #starred { display: none; }

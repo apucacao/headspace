@@ -22,10 +22,12 @@ require([
     interpolate : /\{\{(.+?)\}\}/g
   };
 
-  require({ urlArgs: Date.now() }, ['app']);
+  $(function() {
+    require({ urlArgs: Date.now() }, ['app']);
 
-  if (appData.development) {
-    require(['hashgrid']);
-  }
+    if (appData.development) {
+      require(['hashgrid']);
+    }
+  });
 
 });

@@ -1,32 +1,34 @@
 define([
-  'underscore', 'jquery', 'backbone', 'text!templates/Link.html'
+  'underscore', 'jquery', 'backbone', 'text!templates/link.html'
 ], function(_, $, Backbone, linkTemplate) {
 
   'use strict';
 
   return Backbone.View.extend({
-    tagName: 'li',
+    className: 'link',
+
+    template: _.template(linkTemplate),
 
     events: {
-      'click .star': 'toggleStar'
+      'click .star:not(.waiting)': 'toggle'
     },
 
-    initialize: function(options) {
+    initialize: function() {
       _.bindAll(this, 'render');
-      this.compiledTemplate = _.template(linkTemplate);
-      this.model.bind('change', this.render);
+      this.model.bind('saved', this.render);
     },
 
     render: function() {
-      $(this.el).html(this.compiledTemplate(this.model.toJSON()));
+      this.delegateEvents();
+      $(this.el).html(this.template(this.model.toJSON()));
       $('.created', this.el).timeago();
       return this;
     },
 
-    toggleStar: function(ev) {
-      ev.preventDefault();
-      this.model.toggleStar();
-      this.model.save();
+    toggle: function(evt) {
+      evt.preventDefault();
+      $('.star', this.el).addClass('waiting');
+      this.model.toggle();
     }
   });
 

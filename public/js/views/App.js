@@ -1,54 +1,80 @@
 define([
-  'underscore', 'jquery', 'backbone', 'models/Links', './Links',
-  './StarredLinks', './AddLink'
-], function(_, $, Backbone, LinkCollection, LinkListView, StarredListView,
-  AddLinkView) {
+  'underscore', 'jquery', 'backbone', './LinkList', './Pagination',
+  './StarFilter', './Search', './AddLink', './Status',
+  'text!templates/app.html'
+], function(_, $, Backbone, LinkListView, PaginationView, StarFilterView,
+  SearchView, AddLinkView, StatusView, appTemplate) {
 
   'use strict';
 
   return Backbone.View.extend({
-    el: $('#app'),
+    template: _.template(appTemplate),
 
     events: {
-      'click .add-link' : 'addLink'
-    },
-
-    transitions: {
-      fadeIn: function(callback) { $(this.el).fadeIn('fast', callback || $.noop); },
-      fadeOut: function(callback) { $(this.el).fadeOut('fast', callback || $.noop); }
+      'click #add-link': 'addLink',
+      'click #home': 'clear'
     },
 
     initialize: function() {
-      this.streamView = new LinkListView({el: $('#stream'), collection: LinkCollection});
-      this.starredView = new StarredListView({el: $('#starred'), collection: LinkCollection});
+      _.bindAll(this, 'loading', 'doneLoading');
+      this.collection.bind('loading', this.loading);
+      this.collection.bind('done-loading', this.doneLoading);
     },
 
-    setView: function(name) {
-      switch(name) {
-        case 'stream':
-          this.hide(this.starredView, _.bind(function() {
-            this.show(this.streamView);
-          }, this));
-          break;
-          case 'starred':
-          this.hide(this.streamView, _.bind(function() {
-            this.show(this.starredView);
-          }, this));
-          break;
-      }
+    loading: function() {
+      $(this.el).addClass('loading');
+      this.statusView.open();
     },
 
-    show: function(view, callback) {
-      this.transitions.fadeIn.call(view.render(), callback);
+    doneLoading: function() {
+      $(this.el).removeClass('loading');
+      this.statusView.close();
     },
 
-    hide: function(view, callback) {
-      this.transitions.fadeOut.call(view.render(), callback);
+    addLink: function(evt) {
+      evt.preventDefault();
+      this.addLinkView.open();
     },
 
-    addLink: function(ev) {
-      ev.preventDefault();
-      new AddLinkView({collection: LinkCollection});
+    clear: function(evt) {
+      evt.preventDefault();
+      this.collection.browseAll();
+    },
+
+    render: function() {
+      $(this.el).html(this.template());
+
+      this.statusView = new StatusView({
+        el: '#status',
+        collection: this.collection
+      });
+
+      this.starFilterView = new StarFilterView({
+        el: '#star-filter',
+        collection: this.collection
+      });
+
+      this.paginationView = new PaginationView({
+        el: '#pagination',
+        collection: this.collection
+      });
+
+      this.searchView = new SearchView({
+        el: '#search',
+        collection: this.collection
+      });
+
+      this.linkListView = new LinkListView({
+        el: '#links',
+        collection: this.collection
+      });
+
+      this.addLinkView = new AddLinkView({
+        el: '#dialog',
+        collection: this.collection
+      });
+
+      return this;
     }
   });
 

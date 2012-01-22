@@ -58,7 +58,7 @@ namespace :db do
       App.database << "DROP TABLE #{table} CASCADE"
     end
   end
-  
+
   desc 'Reset the database'
   task :reset, :env do |cmd, args|
     env = args[:env] || 'development'
@@ -72,8 +72,8 @@ namespace :seed do
   desc 'Seed the database'
   task :links, :count, :env do |cmd, args|
     env = args[:env] || 'development'
-    count = args[:count] || 25
-    
+    count = args[:count].to_i || 25
+
     require './seed'
     count.times { Link.make; sleep 1 }
   end

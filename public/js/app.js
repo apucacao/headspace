@@ -1,24 +1,18 @@
 define([
-  'underscore', 'jquery', 'backbone', 'models/Links', 'views/App',
-  'routers/Workspace'
-], function(_, $, Backbone, LinkCollection, AppView, Workspace) {
+  'underscore', 'jquery', 'backbone', 'models/Links', 'views/App'
+], function(_, $, Backbone, LinkCollection, AppView) {
 
   'use strict';
 
-  $(function() {
-
-    window.Headspace= window.Headspace || {
-      views: {
-        appView: new AppView
-      },
-      routers: {
-        workspace: new Workspace
-      }
-    };
-
-    Backbone.history.start({root: '/'});
-
-    LinkCollection.reset(appData.links);
+  var links = window.links = new LinkCollection([], {
+    pagination: appData.pagination
   });
+
+  var appView = new AppView({
+    el: $('#app'),
+    collection: links
+    }).render();
+
+  links.reset(appData.links);
 
 });

@@ -8,6 +8,7 @@ Sequel.migration do
       timestamp :created_at, :null => false
       timestamp :updated_at, :null => false
       foreign_key :owner_id, :users, :key => :id, :null => false
+      full_text_index [:url, :note]
     end
   end
 end

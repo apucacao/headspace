@@ -18,7 +18,7 @@ class App < Sinatra::Application
     end
 
     get '/failure' do
-      
+      redirect '/'
     end
 
     get '/logout' do

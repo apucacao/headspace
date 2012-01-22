@@ -1,4 +1,4 @@
 - if current_user.avatar
-  img.avatar src="#{current_user.avatar}"
+  img src="#{current_user.avatar}" title="#{current_user.name}"
 - else
-  img.avatar src="/avatar.png"
+  span data-icon="U" title="#{current_user.name}"

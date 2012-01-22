@@ -5,6 +5,14 @@ class Link < Sequel::Model
     def with_starred (user)
       select_all(:links).select_more([[{:starred_links__link_id => :links__id}, true]].case(false).as(:starred)).left_join(:starred_links, :user_id => user.id, :link_id => :id)
     end
+
+    def all_for (user)
+      with_starred(user)
+    end
+
+    def starred_for (user)
+      with_starred(user).where(:user_id => user.id)
+    end
   end
 
   def validate
