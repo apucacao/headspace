@@ -5,3 +5,4 @@
 * Keyboard navigation
 * Tags
 * Mobile UI
+* Caching
