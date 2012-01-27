@@ -1,0 +1,102 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    addressable (2.2.6)
+    ansi (1.4.1)
+    backports (2.3.0)
+    chunky_png (1.2.5)
+    compass (0.11.7)
+      chunky_png (~> 1.2)
+      fssm (>= 0.2.7)
+      sass (~> 3.1)
+    database_cleaner (0.7.1)
+    eventmachine (0.12.10)
+    faker (1.0.1)
+      i18n (~> 0.4)
+    faraday (0.7.5)
+      addressable (~> 2.2.6)
+      multipart-post (~> 1.1.3)
+      rack (>= 1.1.0, < 2)
+    fssm (0.2.8.1)
+    hashie (1.2.0)
+    i18n (0.6.0)
+    json (1.6.5)
+    machinist (1.0.6)
+    minitest (2.10.1)
+    multi_json (1.0.4)
+    multipart-post (1.1.4)
+    oauth2 (0.5.2)
+      faraday (~> 0.7)
+      multi_json (~> 1.0)
+    omniauth (1.0.2)
+      hashie (~> 1.2)
+      rack
+    omniauth-google-oauth2 (0.1.9)
+      omniauth (~> 1.0)
+      omniauth-oauth2
+    omniauth-oauth2 (1.0.0)
+      oauth2 (~> 0.5.0)
+      omniauth (~> 1.0)
+    pg (0.12.2)
+    rack (1.3.6)
+    rack-flash (0.1.2)
+      rack
+    rack-protection (1.2.0)
+      rack
+    rack-test (0.6.1)
+      rack (>= 1.0)
+    redcarpet (2.0.1)
+    rubypants (0.2.0)
+    sass (3.1.12)
+    sequel (3.31.0)
+    sequel_postgresql_triggers (1.0.3)
+    shotgun (0.9)
+      rack (>= 1.0)
+    sinatra (1.3.2)
+      rack (~> 1.3, >= 1.3.6)
+      rack-protection (~> 1.2)
+      tilt (~> 1.3, >= 1.3.3)
+    sinatra-contrib (1.3.1)
+      backports (>= 2.0)
+      eventmachine
+      rack-protection
+      rack-test
+      sinatra (~> 1.3.0)
+      tilt (~> 1.3)
+    slim (1.1.0)
+      temple (~> 0.3.5)
+      tilt (~> 1.3.2)
+    temple (0.3.5)
+    tilt (1.3.3)
+    turn (0.8.3)
+      ansi
+    typogruby (1.0.13)
+      rubypants
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  compass
+  database_cleaner
+  faker
+  i18n
+  json
+  machinist (= 1.0.6)
+  minitest
+  omniauth
+  omniauth-google-oauth2
+  pg
+  rack (= 1.3.6)
+  rack-flash
+  rack-test
+  redcarpet
+  sass
+  sequel
+  sequel_postgresql_triggers
+  shotgun
+  sinatra
+  sinatra-contrib
+  slim
+  turn
+  typogruby
