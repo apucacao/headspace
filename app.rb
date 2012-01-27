@@ -59,7 +59,7 @@ class App < Sinatra::Application
   end
 
   configure :production do
-    # production database + logging
+    set :database, Sequel.postgres(ENV['DATABASE_URL']), :loggers => [Logger.new($stdout)]
   end
 
   configure :test do
