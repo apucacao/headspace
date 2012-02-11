@@ -20,7 +20,7 @@
   modules: [
     {
       name : 'main',
-      exclude : []
+      include: ['./app']
     }
   ]
 })

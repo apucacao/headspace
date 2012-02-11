@@ -4,7 +4,7 @@ define([
 
   'use strict';
 
-  var links = window.links = new LinkCollection([], {
+  var links = new LinkCollection([], {
     pagination: appData.pagination
   });
 
