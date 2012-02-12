@@ -20,10 +20,13 @@ html
     - if authenticated?
       javascript:
         var appData = {
-          development: #{{ development? }},
           links: #{{ @links.to_json }},
           pagination: #{{ @pagination.to_json }}
         };
+
+    - if development?
+      javascript:
+        appData.development = true;
   body
     div#screen
       header role="banner"

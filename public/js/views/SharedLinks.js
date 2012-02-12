@@ -11,7 +11,7 @@ define([
     },
 
     render: function() {
-      $(this.el).html(this.collection.map(function(link) {
+      this.$el.html(this.collection.map(function(link) {
         return new LinkView({model: link}).render().el;
       }));
     }

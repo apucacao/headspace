@@ -22,12 +22,12 @@ define([
     },
 
     loading: function() {
-      $(this.el).addClass('loading');
+      this.$el.addClass('loading');
       this.statusView.open();
     },
 
     doneLoading: function() {
-      $(this.el).removeClass('loading');
+      this.$el.removeClass('loading');
       this.statusView.close();
     },
 
@@ -42,7 +42,7 @@ define([
     },
 
     render: function() {
-      $(this.el).html(this.template());
+      this.$el.html(this.template());
 
       this.statusView = new StatusView({
         el: '#status',

@@ -18,13 +18,13 @@ define([
     },
 
     render: function() {
-      $(this.el).removeClass('empty');
+      this.$el.removeClass('empty');
 
       if (this.collection.isEmpty()) {
-        $(this.el).addClass('empty');
+        this.$el.addClass('empty');
       }
 
-      $(this.el).html(this.template({
+      this.$el.html(this.template({
         prev : !this.collection.firstPage,
         next : !this.collection.lastPage,
         start: this.collection.start,

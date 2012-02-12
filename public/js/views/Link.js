@@ -20,7 +20,7 @@ define([
 
     render: function() {
       this.delegateEvents();
-      $(this.el).html(this.template(this.model.toJSON()));
+      this.$el.html(this.template(this.model.toJSON()));
       $('.created', this.el).timeago();
       return this;
     },

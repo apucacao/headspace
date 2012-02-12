@@ -17,9 +17,9 @@ define([
 
     render: function() {
       if (this.collection.isEmpty()) {
-        $(this.el).html(this.emptyListTemplate());
+        this.$el.html(this.emptyListTemplate());
       } else {
-        $(this.el).html(this.collection.map(function(link) {
+        this.$el.html(this.collection.map(function(link) {
           return new LinkView({model: link}).render().el;
         }));
       }
@@ -27,7 +27,7 @@ define([
 
     addOne: function(link) {
       if (!this.collection.isFiltered()) {
-        $(this.el).prepend(new LinkView({model: link}).render().el);
+        this.$el.prepend(new LinkView({model: link}).render().el);
       }
     }
   });

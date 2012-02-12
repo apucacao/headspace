@@ -10,7 +10,8 @@ define([
     },
 
     defaults: {
-      starred: false
+      starred: false,
+      created_at: new Date(Date.now()).toISOString()
     },
 
     toggle: function() {

@@ -30,14 +30,14 @@ define([
     },
 
     open: function() {
-      $(this.el).addClass('open');
+      this.$el.addClass('open');
       $('input', this.el).focus();
     },
 
     close: function() {
       $('input, textarea', this.el).val('');
       this.validator.resetForm();
-      $(this.el).removeClass('open');
+      this.$el.removeClass('open');
     },
 
     save: function() {
