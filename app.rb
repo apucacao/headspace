@@ -59,7 +59,7 @@ class App < Sinatra::Application
   end
 
   configure :production do
-    set :database, Sequel.connect(ENV['DATABASE_URL']), :loggers => [Logger.new($stdout)]
+    set :database, Sequel.connect(ENV['HEADSPACE_DATABASE_URL']), :loggers => [Logger.new($stdout)]
   end
 
   configure :test do
