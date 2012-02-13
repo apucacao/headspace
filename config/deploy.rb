@@ -8,7 +8,7 @@ set :use_sudo, false
 
 set :application, 'headspace'
 set :stage, :production
-set :keep_releases, 3
+set :keep_releases, 1
 
 server ENV['SQUID_SSH'], :app, :web, :db, :primary => true
 
