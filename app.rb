@@ -76,6 +76,10 @@ class App < Sinatra::Application
     def development?
       App.development?
     end
+
+    def production?
+      App.production?
+    end
   end
 end
 
