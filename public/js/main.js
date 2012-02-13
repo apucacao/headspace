@@ -16,7 +16,7 @@ require.config({
 });
 
 require([
-  'domReady', 'jquery', 'order!lightbox_me',
+  'domReady', 'order!jquery', 'order!lightbox_me',
   'order!validate', 'order!timeago'
 ], function(domReady) {
 
