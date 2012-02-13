@@ -7,10 +7,10 @@
   paths: {
     'order'       : 'vendor/require.order-min',
     'text'        : 'vendor/require.text-min',
+    'domReady'   : 'vendor/require.domready-min',
     'json2'       : 'vendor/json2',
-    'underscore'  : 'vendor/underscore-min',
-    'backbone'    : 'vendor/backbone-min',
-    'handlebars'  : 'vendor/handlebars',
+    'underscore' : 'vendor/underscore',
+    'backbone'   : 'vendor/backbone',
     'jquery'      : 'vendor/jquery-min',
     'validate'    : 'vendor/jquery.validate-min',
     'timeago'     : 'vendor/jquery.timeago',
@@ -20,7 +20,7 @@
 
   modules: [
     {
-      name : 'main',
+      name: 'main',
       include: ['app']
     }
   ]

@@ -2,6 +2,7 @@ require.config({
   paths: {
     'order'      : 'vendor/require.order-min',
     'text'       : 'vendor/require.text-min',
+    'domReady'   : 'vendor/require.domready-min',
     'json2'      : 'vendor/json2',
     'underscore' : 'vendor/underscore',
     'backbone'   : 'vendor/backbone',
@@ -15,15 +16,11 @@ require.config({
 });
 
 require([
-  'underscore', 'json2', 'order!jquery', 'order!backbone',
-  'order!lightbox_me', 'order!validate', 'order!timeago'
-], function(_) {
+  'domReady', 'jquery', 'order!lightbox_me',
+  'order!validate', 'order!timeago'
+], function(domReady) {
 
-  _.templateSettings = {
-    interpolate : /\{\{(.+?)\}\}/g
-  };
-
-  $(function() {
+  domReady(function() {
     require({ urlArgs: Date.now() }, ['app']);
 
     if ('development' in appData) {

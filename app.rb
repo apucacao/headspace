@@ -43,6 +43,7 @@ class App < Sinatra::Application
     Compass.configuration do |config|
       config.project_path = File.dirname(__FILE__)
       config.sass_dir = 'views'
+      config.output_style = :compressed
     end
 
     set :scss, Compass.sass_engine_options

@@ -1,7 +1,7 @@
 <article>
-  <h1><a href="{{url}}" title="Visit {{url}}">{{note}}</a></h1>
-  <span data-icon="S" class="star {{starred}}" title="Star for later"></span>
+  <h1><a href="<%= url %>" title="Visit <%= url %>"><%= note %></a></h1>
+  <span data-icon="S" class="star <%= starred %>" title="Star for later"></span>
   <footer>
-    <abbr class="created" title="{{created_at}}">{{created_at}}</abbr>
+    <abbr class="created" title="<%= created_at %>"><%= created_at %></abbr>
   </footer>
 </article>
