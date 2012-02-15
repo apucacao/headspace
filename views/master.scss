@@ -180,22 +180,31 @@ div#links {
 // =pagination
 
 #pagination {
-  display: none;
-  background: url('../img/spin.gif') no-repeat 50% 50%;
   height: 1.5em;
+  text-align: center;
+  .message { display: none; }
 }
 
-#pagination.loading { display: block; }
+#pagination.loading {
+  background: url('../img/spin.gif') no-repeat 50% 50%;
+  .load-more { display: none; }
+}
+
+#pagination.auto .load-more { display: none; }
 
 #pagination.complete {
   display: block;
-  text-align: center;
   background: transparent;
   color: $fade;
   font-size: 0.875em;
   line-height: 1.714;
   font-style: italic;
+
+  .message { display: block; }
+  .load-more { display: none; }
 }
+
+.load-more { width: auto; }
 
 // =layout
 

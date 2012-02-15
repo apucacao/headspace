@@ -83,7 +83,7 @@ define([
     },
 
     isComplete: function() {
-      return this.complete || this.size() === 0;
+      return this.complete;
     },
 
     isFiltered: function() {
