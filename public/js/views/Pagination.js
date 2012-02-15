@@ -1,46 +1,48 @@
 define([
-  'underscore', 'jquery', 'backbone', 'text!templates/pagination.html'
-], function(_, $, Backbone, paginationTemplate) {
-
-  'use strict';
+  'underscore', 'jquery', 'backbone'
+], function(_, $, Backbone) {
+  
+  var delay = 1000;
 
   return Backbone.View.extend({
-    template: _.template(paginationTemplate),
-
-    events: {
-      'click .prev.true': 'prevPage',
-      'click .next.true': 'nextPage'
-    },
-
     initialize: function() {
-      _.bindAll(this, 'render');
-      this.collection.bind('reset', this.render);
+      _.bindAll(this, 'scroll', 'enable', 'refresh');
+      this.handler = _.throttle(this.scroll, delay);
+      this.enable();
+      this.collection.on('reset', this.enable);
+      this.collection.on('refresh', this.refresh);
     },
 
-    render: function() {
-      this.$el.removeClass('empty');
+    scroll: function(evt) {
+      var scrollTop = $(window).scrollTop();
+      var documentHeight = $(document).height();
+      var windowHeight=  $(window).height();
 
-      if (this.collection.isEmpty()) {
-        this.$el.addClass('empty');
+      if (scrollTop === documentHeight - windowHeight) {
+        if (!this.collection.isComplete()) {
+          this.$el.addClass('loading');
+          this.collection.more();
+        } else {
+          this.disable();
+        }
       }
-
-      this.$el.html(this.template({
-        prev : !this.collection.firstPage,
-        next : !this.collection.lastPage,
-        start: this.collection.start,
-        end  : this.collection.end,
-        total: this.collection.total
-      }));
-      return this;
     },
 
-    prevPage: function(evt) {
-      this.collection.gotoPrev();
+    enable: function() {
+      this.$el.removeClass('complete').text('');
+      $(window).on('scroll', this.handler);
     },
 
-    nextPage: function(evt) {
-      this.collection.gotoNext();
+    disable: function() {
+      $(window).off('scroll', this.handler);
     },
+
+    refresh: function() {
+      this.$el.removeClass('loading');
+      if (this.collection.isComplete()) {
+        this.$el.addClass('complete').text('All links loaded');
+      }
+    }
   });
 
 });

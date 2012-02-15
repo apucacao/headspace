@@ -1,9 +1,8 @@
 define([
-  'underscore', 'jquery', 'backbone', './LinkList', './Pagination',
-  './StarFilter', './Search', './AddLink', './Status',
-  'text!templates/app.html'
-], function(_, $, Backbone, LinkListView, PaginationView, StarFilterView,
-  SearchView, AddLinkView, StatusView, appTemplate) {
+  'underscore', 'jquery', 'backbone', './LinkList', './StarFilter', './Search',
+  './AddLink', './Status', './Pagination', 'text!templates/app.html'
+], function(_, $, Backbone, LinkListView, StarFilterView, SearchView,
+  AddLinkView, StatusView, PaginationView, appTemplate) {
 
   'use strict';
 
@@ -23,12 +22,10 @@ define([
 
     loading: function() {
       this.$el.addClass('loading');
-      this.statusView.open();
     },
 
     doneLoading: function() {
       this.$el.removeClass('loading');
-      this.statusView.close();
     },
 
     addLink: function(evt) {
@@ -44,6 +41,11 @@ define([
     render: function() {
       this.$el.html(this.template());
 
+      this.paginationView = new PaginationView({
+        el: '#pagination',
+        collection: this.collection
+      });
+
       this.statusView = new StatusView({
         el: '#status',
         collection: this.collection
@@ -51,11 +53,6 @@ define([
 
       this.starFilterView = new StarFilterView({
         el: '#star-filter',
-        collection: this.collection
-      });
-
-      this.paginationView = new PaginationView({
-        el: '#pagination',
         collection: this.collection
       });
 

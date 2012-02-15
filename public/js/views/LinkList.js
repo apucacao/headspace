@@ -6,12 +6,12 @@ define([
   'use strict';
 
   return Backbone.View.extend({
-
     emptyListTemplate: _.template(emptyListTemplate),
 
     initialize: function() {
       _.bindAll(this, 'render', 'addOne');
       this.collection.bind('add', this.addOne);
+      this.collection.bind('refresh', this.render);
       this.collection.bind('reset', this.render);
     },
 
@@ -26,7 +26,7 @@ define([
     },
 
     addOne: function(link) {
-      if (!this.collection.isFiltered()) {
+      if (!this.collection.isSearch()) {
         this.$el.prepend(new LinkView({model: link}).render().el);
       }
     }

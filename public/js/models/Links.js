@@ -7,31 +7,14 @@ define([
   return Backbone.Collection.extend({
     model: LinkModel,
 
-    perPage: 10,
-
     page: 1,
 
     url: function() {
       return '/links/' + (this.starredOnly ? 'starred/' : '');
     },
 
-    initialize: function(models, options) {
-      var pagination = (options && options.pagination) || {};
-      _.extend(this, pagination);
-    },
-
     comparator: function(model) {
       return -Date.parse(model.get('created_at'));
-    },
-
-    gotoPrev: function() {
-      if ((this.page - 1) === 0) { return; }
-      this.fetch({data: {page: --this.page, perPage: this.perPage}});
-    },
-
-    gotoNext: function() {
-      if ((this.page + 1) > this.pageCount) { return; }
-      this.fetch({data: {page: ++this.page, perPage: this.perPage}});
     },
 
     enableStarFilter: function() {
@@ -54,10 +37,6 @@ define([
       this.fetch();
     },
 
-    refresh: function() {
-      this.fetch();
-    },
-
     search: function(q) {
       this.page = 1;
       this.q = q;
@@ -70,37 +49,53 @@ define([
       return this;
     },
 
-    fetch: function(options) {
-      var data = {
-        page: this.page,
-        perPage: this.perPage
-      };
+    more: function() {
+      this.page += 1;
+      this.fetch({add: true});
+    },
 
+    fetch: function(options) {
+      var self = this;
+      var data = {};
+
+      if (this.page > 1) { data.page = this.page; }
       if (this.q && this.q.length) { data.q = this.q; }
 
       options || (options = {});
 
       this.trigger('loading');
 
-      Backbone.Collection.prototype.fetch.call(this, {
+      Backbone.Collection.prototype.fetch.call(this, _.extend(options, {
         data: data,
         success: function(collection) {
           collection.trigger('done-loading');
+          if (options.add === true) { self.trigger('refresh'); }
         },
         error: function(collection) {
-          // can this be more helpful?
-          collection.trigger('error-loading');
+          collection.trigger('error-loading', {message: 'Error loading links'});
         }
-      });
+      }));
     },
 
     parse: function(response) {
-      _.extend(this, response.pagination || {});
-      return response.links;
+      this.complete = response.length === 0;
+      return response;
+    },
+
+    isComplete: function() {
+      return this.complete || this.size() === 0;
     },
 
     isFiltered: function() {
-      return !!(this.q || this.starredOnly || this.page > 1);
+      return !!(this.q || this.starredOnly);
+    },
+
+    isFavorites: function() {
+      return !!this.starredOnly;
+    },
+
+    isSearch: function() {
+      !!this.q;
     }
   });
 

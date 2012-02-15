@@ -41,6 +41,7 @@ define([
     },
 
     save: function() {
+      console.log(this.serialize());
       this.collection.create(this.serialize());
       this.close();
     },
@@ -48,7 +49,8 @@ define([
     serialize: function() {
       return {
         url: $('#url', this.el).val(),
-        note: $('#note', this.el).val()
+        note: $('#note', this.el).val(),
+        starred: this.collection.isFavorites()
       };
     },
 

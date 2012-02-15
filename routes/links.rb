@@ -1,48 +1,17 @@
 class App < Sinatra::Application
-  DEFAULT_PAGE = 1
-  DEFAULT_PER_PAGE = 15
-  MAX_PER_PAGE = 50
 
   def get_links (dataset_name, options={})
-    page = params['page'].to_i || DEFAULT_PAGE
-    per_page = params['perPage'].to_i || DEFAULT_PER_PAGE
+    page = params.include?('page') ? params['page'].to_i : 1
 
-    if page < 0 || per_page < 0
+    if page <= 0
       status 400
     else
       status 200
-      page = DEFAULT_PAGE unless page > 0
-
-      if per_page == 0
-        per_page = DEFAULT_PER_PAGE
-      elsif per_page > MAX_PER_PAGE
-        per_page = MAX_PER_PAGE
-      end
-
       dataset = Link.send("#{dataset_name}_for", current_user)
       dataset = dataset.full_text_search(:note, options['q']) if options.include?('q')
-      dataset = dataset.reverse_order(:created_at).paginate(page, per_page)
-
-      count = dataset.count
-
-      start_index = (dataset.current_page - 1) * PER_PAGE + 1
-
-      end_index = (count < PER_PAGE) ? (start_index + count - 1) : dataset.current_page * PER_PAGE
-
-      {
-        :links => dataset.all,
-        :pagination => {
-          :currentPage => dataset.current_page,
-          :pageCount => dataset.page_count,
-          :perPage => per_page,
-          :nextPage => dataset.next_page,
-          :prevPage => dataset.prev_page,
-          :firstPage => dataset.first_page?,
-          :lastPage => dataset.last_page?,
-          :start => start_index,
-          :end => end_index
-        }
-      }.to_json
+      dataset = dataset.reverse_order(:created_at)
+      dataset = dataset.limit(settings.page_size, (page - 1) * settings.page_size)
+      dataset.all.to_json
     end
   end
 
@@ -65,12 +34,15 @@ class App < Sinatra::Application
     # Create a link
     post '/?' do
       data = JSON.parse(request.body.read.to_s)
+      starred = data['starred']
       data[:owner] = current_user
       data.delete('starred')
 
       link = Link.new(data)
 
       if link.save
+        current_user.add_starred_link(link) if starred
+        link[:starred] = starred
         status 200
         body(link.to_json)
       else
@@ -80,6 +52,7 @@ class App < Sinatra::Application
     end
 
     # Update a link
+    # FIXME: rewrite...was under the effects of a nice glass of Ouzo...
     put '/:link_id' do
       data = JSON.parse(request.body.read.to_s)
 

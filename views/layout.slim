@@ -14,8 +14,7 @@ html
     - if authenticated?
       javascript:
         var appData = {
-          links: #{{ @links.to_json }},
-          pagination: #{{ @pagination.to_json }}
+          links: #{{ @links.to_json }}
         };
 
     - if development?

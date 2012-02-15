@@ -39,10 +39,13 @@ class App < Sinatra::Application
 
   use Rack::Flash, :accessorize => [:success, :notice, :error]
 
+  set :page_size, 50
+
   configure do
     Compass.configuration do |config|
       config.project_path = File.dirname(__FILE__)
       config.sass_dir = 'views'
+      config.relative_assets = true
       config.output_style = :compressed
     end
 

@@ -99,8 +99,11 @@ p#what {
 
 div#links {
   list-style: none;
-  margin: 1.5em 0 1.5em 0;
+  margin: 2.9375em 0 1.4375em 0;
   padding: 0;
+  border-style: solid;
+  border-width: 1px 0;
+  border-color: $fade;
 }
 
 .link {
@@ -173,6 +176,26 @@ div#links {
 }
 
 .star.true:active { color: darken($yellow, 15%); }
+
+// =pagination
+
+#pagination {
+  display: none;
+  background: url('../img/spin.gif') no-repeat 50% 50%;
+  height: 1.5em;
+}
+
+#pagination.loading { display: block; }
+
+#pagination.complete {
+  display: block;
+  text-align: center;
+  background: transparent;
+  color: $fade;
+  font-size: 0.875em;
+  line-height: 1.714;
+  font-style: italic;
+}
 
 // =layout
 
@@ -251,16 +274,15 @@ header[role=banner] {
   border-width: 0 1px 1px;
   border-style: solid;
   border-color: lighten($fade, 10%);
-  background-color: $white;
   text-align: center;
+  background: $white url('../img/spin.gif') no-repeat 50% 50%;
   @include box-shadow($fade 0px 2px 10px);
   @include border-bottom-radius(3px);
   @include transition(top 0.35s ease-in-out);
   span { display: block; }
 }
 
-#status.open { top: 0; }
-#status.open span { @include spin; }
+#status.loading { top: 0; }
 
 // =home
 a#home {
@@ -342,75 +364,6 @@ a#add-link:active {
 #star-filter:not(#foo) > input[type='checkbox'] + label:before {
   margin: 0;
   clear: none;
-}
-
-// =pagination
-
-#pagination {
-  float: right;
-  clear: both;
-  margin: 2.5em 0 0 0;
-}
-
-#pagination.empty { visibility: hidden; }
-
-#pagination .range {
-  float: right;
-  font-size: 0.8125em;
-  line-height: 2.462;
-  margin: 0 0.615em 0 0;
-}
-
-#pagination ul {
-  float: right;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-
-  li {
-    width: 2em;
-    float: left;
-
-    span {
-      display: block;
-      line-height: 1.875;
-      padding: 0 0.5em;
-      border-style: solid;
-    }
-
-    .true {
-      color: lighten($fade, 10%);
-      background-color: lighten($fade, 30%);
-      border-color: lighten($fade, 20%);
-      cursor: pointer;
-    }
-
-    .false {
-      color: lighten($fade, 25%);
-      background-color: lighten($fade, 30%);
-      border-color: lighten($fade, 25%);
-    }
-
-    .prev {
-      border-width: 1px 0 1px 1px;
-      @include border-left-radius(3px);
-    }
-
-    .next {
-      border-width: 1px 1px 1px 1px;
-      @include border-right-radius(3px);
-    }
-
-    .true:hover {
-      color: $white;
-      background-color: lighten($fade, 20%);
-    }
-
-    .true:active {
-      border-color: $fade;
-      background-color: $fade;
-    }
-  }
 }
 
 // =search
