@@ -20,7 +20,13 @@ define([
 
     render: function() {
       this.delegateEvents();
-      this.$el.html(this.template(this.model.toJSON()));
+      this.$el.html(this.template({
+        url: this.model.get('url'),
+        note: this.model.get('cleanNote'),
+        created_at: this.model.get('created_at'),
+        starred: this.model.get('starred'),
+        tags: this.model.get('tags')
+      }));
       $('.created', this.el).timeago();
       return this;
     },

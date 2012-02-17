@@ -1,8 +1,6 @@
 @import "compass/css3";
 
-$proxima            : "proxima-nova";
-$proxima-cond       : "proxima-nova-condensed";
-$proxima-extra-cond : "proxima-nova-extra-condensed";
+$copy: arial, sans-serif;
 
 $white : hsla(0, 100%, 100%, 1);
 $yellow: hsla(42, 87%, 58%, 1);
@@ -37,7 +35,7 @@ $fade  : lighten($black, 50%);
 html, body { margin: 0; padding: 0; }
 
 body {
-  font: normal normal 100%/1.5 arial, sans-serif;
+  font: normal normal 100%/1.5 $copy;
   color: $black;
   -webkit-font-smoothing: antialiased;
 }
@@ -59,11 +57,22 @@ a, a:link {
   color: $black
 }
 
+a:visited { color: darken($fade, 20%); }
+
 a:active, a:hover {
   text-decoration: none;
   background-color: $black;
   color: $white;
 }
+
+
+a.tag:link, a.tag:visited {
+  font-size: 0.8125em;
+  line-height: 1.846;
+  color: $fade;
+}
+
+a.tag:hover, a.tag:active { color: $white; }
 
 a#login, a#login:link { color: $green; }
 a#login:active, a#login:hover { color: $white; }
@@ -146,6 +155,26 @@ div#links {
       font-size: 0.8125em;
       line-height: 1.846;
     }
+
+    span.tags {
+      padding: 0 0 0 0.75em;
+      color: $fade;
+    }
+  }
+}
+
+ul.tags {
+  display: inline-block;
+  overflow: hidden;
+  list-style: none;
+  margin: 0 0 0 1em;
+  padding: 0;
+  color: $fade;
+
+  li {
+    display: inline-block;
+    font-family: $copy;
+    a { display: block; }
   }
 }
 

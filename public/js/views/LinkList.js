@@ -26,7 +26,10 @@ define([
     },
 
     addOne: function(link) {
-      if (!this.collection.isSearch()) {
+      if (this.collection.isSearch()) { return; }
+      if (this.collection.size() === 1) {
+        this.render();
+      } else {
         this.$el.prepend(new LinkView({model: link}).render().el);
       }
     }
