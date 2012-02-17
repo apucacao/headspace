@@ -17,9 +17,9 @@ html
           links: #{{ @links.to_json }}
         };
 
-    - if development?
-      javascript:
-        appData.development = true;
+      - if development?
+        javascript:
+          appData.development = true;
   body
     div#screen
       header role="banner"
@@ -31,7 +31,7 @@ html
             div.avatar
               == partial :avatar, :locales => {:user => current_user.avatar}
           - else
-            a href="/auth/google_oauth2" signin with google
+            a#login href="/auth/google_oauth2" signin with Google
       - if authenticated?
         div#app
       - else

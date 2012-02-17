@@ -4,11 +4,11 @@ $proxima            : "proxima-nova";
 $proxima-cond       : "proxima-nova-condensed";
 $proxima-extra-cond : "proxima-nova-extra-condensed";
 
-$white              : hsla(0, 100%, 100%, 1);
-$yellow             : hsla(42, 87%, 58%, 1);
-$black              : hsla(80, 3%, 18%, 1);
-$red                : hsla(10, 54%, 49%, 1);
-$green              : hsla(88, 45%, 63%, 1);
+$white : hsla(0, 100%, 100%, 1);
+$yellow: hsla(42, 87%, 58%, 1);
+$black : hsla(80, 3%, 18%, 1);
+$red   : hsla(10, 54%, 49%, 1);
+$green : hsl(82, 92%, 43%);
 
 $fade               : lighten($black, 50%);
 
@@ -64,6 +64,9 @@ a:active, a:hover {
   background-color: $black;
   color: $white;
 }
+
+a#login, a#login:link { color: $green; }
+a#login:active, a#login:hover { color: $white; }
 
 *[data-icon] {
   font-family: Pictos;
@@ -182,12 +185,17 @@ div#links {
 #pagination {
   height: 1.5em;
   text-align: center;
-  .message { display: none; }
+  .all-loaded { display: none; }
+  .loading-more {
+    display: none;
+    background: url(../img/spin.gif) no-repeat 0 50%;
+    padding-left: 1.5em;
+  }
 }
 
 #pagination.loading {
-  background: url('../img/spin.gif') no-repeat 50% 50%;
   .load-more { display: none; }
+  .loading-more { display: inline; }
 }
 
 #pagination.auto .load-more { display: none; }
@@ -200,7 +208,7 @@ div#links {
   line-height: 1.714;
   font-style: italic;
 
-  .message { display: block; }
+  .all-loaded { display: inline; }
   .load-more { display: none; }
 }
 
