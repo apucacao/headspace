@@ -8,9 +8,9 @@ $white : hsla(0, 100%, 100%, 1);
 $yellow: hsla(42, 87%, 58%, 1);
 $black : hsla(80, 3%, 18%, 1);
 $red   : hsla(10, 54%, 49%, 1);
-$green : hsl(82, 92%, 43%);
+$green : hsl(82, 92%, 38%);
 
-$fade               : lighten($black, 50%);
+$fade  : lighten($black, 50%);
 
 // =animations
 
