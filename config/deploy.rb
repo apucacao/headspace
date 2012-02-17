@@ -35,3 +35,5 @@ Cape do
   mirror_rake_tasks :db
   mirror_rake_tasks :build
 end
+
+after :deploy, :build, 'deploy:restart'
