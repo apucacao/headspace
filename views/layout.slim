@@ -31,7 +31,7 @@ html
             div.avatar
               == partial :avatar, :locales => {:user => current_user.avatar}
           - else
-            a href="/auth/google_oauth2" login
+            a href="/auth/google_oauth2" signin with google
       - if authenticated?
         div#app
       - else

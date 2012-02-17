@@ -34,7 +34,8 @@ class App < Sinatra::Application
   use Rack::Session::Cookie, :secret => 'use something safer'
 
   use OmniAuth::Builder do
-    provider :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET']
+    provider :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'],
+      :approval_prompt => 'auto'
   end
 
   use Rack::Flash, :accessorize => [:success, :notice, :error]
