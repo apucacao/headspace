@@ -57,8 +57,6 @@ a, a:link {
   color: $black
 }
 
-a:visited { color: darken($fade, 20%); }
-
 a:active, a:hover {
   text-decoration: none;
   background-color: $black;

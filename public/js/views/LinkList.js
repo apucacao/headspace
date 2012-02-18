@@ -10,9 +10,9 @@ define([
 
     initialize: function() {
       _.bindAll(this, 'render', 'addOne');
-      this.collection.bind('add', this.addOne);
-      this.collection.bind('refresh', this.render);
-      this.collection.bind('reset', this.render);
+      this.collection.on('add', this.addOne);
+      this.collection.on('refresh', this.render);
+      this.collection.on('reset', this.render);
     },
 
     render: function() {

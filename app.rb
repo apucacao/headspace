@@ -59,8 +59,8 @@ class App < Sinatra::Application
   configure :development do
     # Ensure that code is automatically reloaded
     register Sinatra::Reloader
-
-    set :database, Sequel.postgres('headspace_dev', :user => 'root', :password => 'qwerty'), :loggers => [Logger.new($stdout)]
+    set :database, Sequel.postgres('headspace_dev', :user => 'root', :password => 'qwerty')
+    database.loggers = [Logger.new($stdout)]
   end
 
   configure :production do

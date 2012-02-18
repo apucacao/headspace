@@ -11,13 +11,18 @@ define([
     },
 
     initialize: function() {
-      _.bindAll(this, 'clear');
-      this.collection.bind('clear-filters', this.clear);
+      _.bindAll(this, 'clear', 'update');
+      this.collection.on('clear-filters', this.clear);
+      this.collection.on('search', this.update);
     },
 
     clear: function() {
       this.term = null;
       $('input', this.el).val('');
+    },
+
+    update: function(term) {
+      $('input', this.el).val(term).focus();
     },
 
     search: function(evt) {

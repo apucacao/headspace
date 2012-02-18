@@ -10,7 +10,8 @@ define([
     template: _.template(linkTemplate),
 
     events: {
-      'click .star:not(.waiting)': 'toggle'
+      'click .star:not(.waiting)': 'toggle',
+      'click .tag': 'searchByTag'
     },
 
     initialize: function() {
@@ -35,6 +36,12 @@ define([
       evt.preventDefault();
       $('.star', this.el).addClass('waiting');
       this.model.toggle();
+    },
+
+    searchByTag: function(evt) {
+      var tag = $(evt.target).attr('href');
+      evt.preventDefault();
+      this.model.collection.search(tag);
     }
   });
 

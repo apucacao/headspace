@@ -4,7 +4,7 @@ define([
 
   'use strict';
 
-  var tagExp = /\s?#(\w+)\s?/g;
+  var tagExp = /(^|\s)#(\w+)(?=\s|$)/g;
 
   return Backbone.Model.extend({
     url: function() {
@@ -27,7 +27,7 @@ define([
 
       // while (m = tagExp.exec(note)) { console.log(m[1]); }
 
-      var cleanNote = note.replace(tagExp, function(m, tag) {
+      var cleanNote = note.replace(tagExp, function(m, pre, tag, post) {
         tags.push(tag);
         return '';
       }).trim();

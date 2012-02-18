@@ -7,11 +7,24 @@ class App < Sinatra::Application
       status 400
     else
       status 200
+      puts "searching for `#{options['q']}`" if options.include?('q')
       dataset = Link.send("#{dataset_name}_for", current_user)
-      dataset = dataset.full_text_search(:note, options['q']) if options.include?('q')
+
+      # TODO: move this into a helper
+      if options.include?('q')
+        term = sanitize_search_term(options['q'])
+        dataset = dataset.full_text_search(:note, term)
+      end
+
       dataset = dataset.reverse_order(:created_at)
       dataset = dataset.limit(settings.page_size, (page - 1) * settings.page_size)
-      dataset.all.to_json
+
+      # FIXME: PG search for a dangling single quote was throws
+      # a syntax error. Sequel escapes literals already, yet a
+      # couple of corner cases still cause an error. So until
+      # I can figure out what is going wrong, the user will see no
+      # results for these searches.
+      body(dataset.all.to_json) rescue [].to_json
     end
   end
 
@@ -23,7 +36,9 @@ class App < Sinatra::Application
 
     # Get all links
     get '/' do
-      get_links(:all, params)
+      results = get_links(:all, params)
+      puts ">>> #{results}"
+      results
     end
 
     # Get starred links

@@ -40,6 +40,7 @@ define([
     search: function(q) {
       this.page = 1;
       this.q = q;
+      this.trigger('search', this.q);
       this.fetch();
     },
 
