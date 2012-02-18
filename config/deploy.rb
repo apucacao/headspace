@@ -36,4 +36,4 @@ Cape do
   mirror_rake_tasks :build
 end
 
-after :deploy, :build, 'deploy:restart'
+after :deploy, 'db:migrate', :build, 'deploy:restart'
