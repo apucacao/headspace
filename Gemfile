@@ -26,10 +26,7 @@ group :development, :test do
   gem 'turn'
   gem 'minitest'
   gem 'rack-test'
-  gem 'i18n'
-
   gem 'machinist', '1.0.6'
   gem 'faker'
-
   gem 'database_cleaner'
 end

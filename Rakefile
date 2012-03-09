@@ -13,13 +13,6 @@ task :environment, [:env] => 'bundler:setup' do |cmd, args|
   require './app'
 end
 
-desc 'Run the application'
-task :run, :env do |cmd, args|
-  env = args[:env] || 'development'
-  puts "Running in #{env} mode..."
-  sh "bundle exec shotgun -E #{env} -p 4567"
-end
-
 desc 'Minify client-side application assets'
 task :build do
   sh %{cd public/js && node vendor/r.js -o app-build.js}

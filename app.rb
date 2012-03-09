@@ -6,6 +6,8 @@
 # Set the environment, defaulting to dev
 ENV['RACK_ENV'] ||= 'development'
 
+$stdout.sync = true if ENV['RACK_ENV'] == 'development'
+
 # Automatically require all gems listed in the Gemfile
 require 'bundler'
 Bundler.require
