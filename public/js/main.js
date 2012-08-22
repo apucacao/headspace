@@ -1,13 +1,7 @@
 require([
-  'jquery', 'jquery.validate', 'jquery.timeago'
-], function($) {
+  'app', 'jquery', 'jquery.validate', 'jquery.timeago', 'hashgrid'
+], function(app, $) {
 
-  $(function() {
-    require({ urlArgs: Date.now() }, ['app']);
-
-    if ('development' in appData) {
-      require(['hashgrid']);
-    }
-  });
+  $(function() { app.init(); });
 
 });

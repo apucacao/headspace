@@ -4,17 +4,21 @@ define([
 
   'use strict';
 
-  var links = new LinkCollection();
+  return {
+    init: function() {
+      var links = new LinkCollection();
 
-  var appView = new AppView({
-    el: $('#app'),
-    collection: links
-    }).render();
+      var appView = new AppView({
+        el: $('#app'),
+        collection: links
+        }).render();
 
-  links.reset(appData.links);
+      links.reset(appData.links);
 
-  if (appData.development) {
-    window.links = links;
+      if (appData.development) {
+        window.links = links;
+      }
+    }
   }
 
 });

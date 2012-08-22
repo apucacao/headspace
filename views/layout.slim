@@ -46,6 +46,8 @@ html
     - if authenticated?
       - if development?
         script data-main="/js/config.js" src="/js/vendor/require.js"
+      - else
+        script src="/js/headspace.js"
 
     - if production?
       javascript:

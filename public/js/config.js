@@ -29,6 +29,10 @@ require.config({
 
     'jquery.timeago': {
       deps: ['jquery']
+    },
+
+    'hashgrid': {
+      deps: ['jquery']
     }
   }
 });

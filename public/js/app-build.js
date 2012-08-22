@@ -1,16 +1,10 @@
 ({
-  appDir : './',
-  baseUrl : './',
   optimize : 'uglify',
-  dir : '../release',
   preserveLicenseComments: false,
 
-  mainConfigFile: 'config.js',
+  name: 'vendor/almond.js',
+  include: 'main',
+  out: 'headspace.js',
 
-  modules: [
-    {
-      name: 'main',
-      include: ['app']
-    }
-  ]
+  mainConfigFile: 'config.js'
 })
