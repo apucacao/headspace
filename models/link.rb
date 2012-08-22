@@ -1,4 +1,6 @@
 class Link < Sequel::Model
+  plugin :timestamps, :update_on_create => true
+
   many_to_one :owner, :class => :User
 
   dataset_module do

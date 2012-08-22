@@ -61,7 +61,7 @@ class App < Sinatra::Application
   configure :development do
     # Ensure that code is automatically reloaded
     register Sinatra::Reloader
-    set :database, Sequel.postgres('headspace_dev', :user => 'root', :password => 'qwerty')
+    set :database, Sequel.connect('postgres://apucacao@localhost/headspace_dev')
     database.loggers = [Logger.new($stdout)]
   end
 
