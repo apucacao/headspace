@@ -42,12 +42,10 @@ html
         small
           ' headspace – a project by
           a href="http://albatross.io" Alexis Georges
-    
+
     - if authenticated?
       - if development?
-        script data-main="/js/main.js" src="/js/vendor/require-min.js"
-      - else
-        script data-main="/release/main.js" src="/js/vendor/require-min.js"
+        script data-main="/js/config.js" src="/js/vendor/require.js"
 
     - if production?
       javascript:
