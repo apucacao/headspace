@@ -431,11 +431,9 @@ a#add-link:active {
 
 #dialog {
   position: absolute;
-  // top: -23.6875em; // 379px (height + shadow)
-  top: -25.5625em; // 409px (height + shadow)
+  top: -27em; // ~409px (height + shadow)
   left: 8.75em;
   width: 338px;
-  // min-height: 369px;
   min-height: 399px;
   border-width: 0 1px 1px;
   border-style: solid;
