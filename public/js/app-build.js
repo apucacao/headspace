@@ -3,6 +3,7 @@
   baseUrl : './',
   optimize : 'uglify',
   dir : '../release',
+  preserveLicenseComments: false,
 
   mainConfigFile: 'config.js',
 
