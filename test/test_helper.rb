@@ -5,7 +5,6 @@ Bundler.setup
 Bundler.require(:default, :test)
 
 require_relative '../app'
-require_relative 'factories'
 
 class TestHelper < MiniTest::Unit::TestCase
   def app
