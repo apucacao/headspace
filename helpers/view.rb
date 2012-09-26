@@ -1,7 +1,7 @@
 module Sinatra
   module View
     module Helpers
-      # stolen from https://gist.github.com/1323824
+      # credits: https://gist.github.com/1323824
       def partial(template, *args)
         template_array = template.to_s.split('/')
         template = template_array[0..-2].join('/') + "/_#{template_array[-1]}"
