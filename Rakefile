@@ -61,17 +61,6 @@ namespace :db do
   end
 end
 
-namespace :seed do
-  desc 'Seed the database'
-  task :links, :count, :env do |cmd, args|
-    env = args[:env] || 'development'
-    count = args[:count].to_i || 25
-
-    require './seed'
-    count.times { Link.make; sleep 1 }
-  end
-end
-
 Rake::TestTask.new do |t|
   t.pattern = 'test/*_test.rb'
 end
