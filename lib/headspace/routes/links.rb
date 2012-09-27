@@ -8,7 +8,7 @@ module Headspace
       else
         status 200
         puts "searching for `#{options['q']}`" if options.include?('q')
-        dataset = Headspace::Model::Link.send("#{dataset_name}_for", current_user)
+        dataset = Model::Link.send("#{dataset_name}_for", current_user)
 
         # TODO: move this into a helper
         if options.include?('q')
@@ -52,7 +52,7 @@ module Headspace
       data[:owner] = current_user
       data.delete('starred')
 
-      link = Headspace::Model::Link.new(data)
+      link = Model::Link.new(data)
 
       if link.save
         current_user.add_starred_link(link) if starred
@@ -73,7 +73,7 @@ module Headspace
       if !data
         status 400
       else
-        link = Headspace::Model::Link.with_starred(current_user).first(:id => params[:link_id])
+        link = Model::Link.with_starred(current_user).first(:id => params[:link_id])
         if !link
           status 404
         else

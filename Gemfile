@@ -14,7 +14,7 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'rack-flash'
 
-gem 'slim'
+gem 'slim', '1.3.0'
 gem 'json'
 gem 'sass'
 gem 'compass'

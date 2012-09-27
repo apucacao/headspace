@@ -5,12 +5,12 @@ module Headspace
     end
 
     get '/auth/google_oauth2/callback' do
-      user = Headspace::Model::User[:provider => @auth['provider'], :uid => @auth['uid']]
+      user = Model::User[:provider => @auth['provider'], :uid => @auth['uid']]
 
       if user
         user.update(:avatar => @auth['info']['image'])
       else
-        user = Headspace::Model::User.create_from_auth_hash(@auth)
+        user = Model::User.create_from_auth_hash(@auth)
       end
 
       session[:user_id] = user.id

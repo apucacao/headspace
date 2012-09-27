@@ -48,7 +48,7 @@ GEM
       rack
     rack-protection (1.2.0)
       rack
-    rack-test (0.6.1)
+    rack-test (0.6.2)
       rack (>= 1.0)
     rubypants (0.2.0)
     sass (3.2.1)
@@ -67,10 +67,10 @@ GEM
       rack-test
       sinatra (~> 1.3.0)
       tilt (~> 1.3)
-    slim (1.3.2)
-      temple (~> 0.5.0)
+    slim (1.3.0)
+      temple (~> 0.4.1)
       tilt (~> 1.3.3)
-    temple (0.5.3)
+    temple (0.4.1)
     tilt (1.3.3)
     turn (0.9.6)
       ansi
@@ -100,6 +100,6 @@ DEPENDENCIES
   shotgun
   sinatra
   sinatra-contrib
-  slim
+  slim (= 1.3.0)
   turn
   typogruby

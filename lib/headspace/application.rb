@@ -12,9 +12,7 @@ module Headspace
   class Application < Sinatra::Base
     register Sinatra::Namespace
 
-    set :root, lambda { |*args| File.join(File.dirname(__FILE__), *args) }
-
-    set :views, root('views')
+    set :views, File.join(File.dirname(__FILE__), 'views')
     set :public_folder, File.join(File.dirname(__FILE__), '../../public')
 
     enable :logging
