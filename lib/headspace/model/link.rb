@@ -3,7 +3,7 @@ module Headspace
     class Link < Sequel::Model
       plugin :timestamps, :update_on_create => true
 
-      many_to_one :owner, :class => :User
+      many_to_one :owner, :class => 'Headspace::Model::User'
 
       dataset_module do
         def with_starred (user)

@@ -18,7 +18,6 @@ gem 'slim'
 gem 'json'
 gem 'sass'
 gem 'compass'
-gem 'redcarpet'
 
 gem 'typogruby'
 
