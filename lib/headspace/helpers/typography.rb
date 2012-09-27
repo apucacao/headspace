@@ -1,6 +1,6 @@
-module Sinatra
-  module Typography
-    module Helpers
+module Headspace
+  module Helpers
+    module Typography
       include Sinatra::Capture
 
       def typogruby(&blk)
@@ -8,6 +8,4 @@ module Sinatra
       end
     end
   end
-
-  helpers Typography::Helpers
 end

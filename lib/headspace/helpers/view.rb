@@ -1,6 +1,6 @@
-module Sinatra
-  module View
-    module Helpers
+module Headspace
+  module Helpers
+    module View
       # credits: https://gist.github.com/1323824
       def partial(template, *args)
         template_array = template.to_s.split('/')
@@ -18,6 +18,4 @@ module Sinatra
       end
     end
   end
-
-  helpers View::Helpers
 end

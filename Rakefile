@@ -25,7 +25,7 @@ namespace :db do
     Rake::Task[:environment].invoke(env)
 
     require 'sequel/extensions/migration'
-    Sequel::Migrator.apply(App.database, File.join(File.dirname(__FILE__), 'migrations'))
+    Sequel::Migrator.apply(App.database, File.join(File.dirname(__FILE__), 'lib/headspace/migrations'))
   end
 
   desc 'Setup database triggers'

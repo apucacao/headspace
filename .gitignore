@@ -1,3 +1,4 @@
 .DS_Store
 .sass-cache/
+public/css/master.css
 public/js/headspace.js

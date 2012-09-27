@@ -1,5 +1,2 @@
-require './app'
-
-App.set :run, false
-
-run App
+require 'headspace'
+run Headspace::Application
