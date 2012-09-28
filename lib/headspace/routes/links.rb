@@ -41,7 +41,7 @@ module Headspace
     end
 
     # Get starred links
-    get '/starred/' do
+    get '/links/starred/' do
       get_links(:starred, params)
     end
 

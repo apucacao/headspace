@@ -22,11 +22,7 @@ gem 'compass'
 gem 'typogruby'
 
 group :development, :test do
-  gem 'shotgun'
-  gem 'turn'
   gem 'minitest'
   gem 'rack-test'
-  gem 'machinist', '1.0.6'
-  gem 'faker'
   gem 'database_cleaner'
 end

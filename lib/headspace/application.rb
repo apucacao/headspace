@@ -6,9 +6,12 @@ require 'sinatra/namespace'
 require 'sinatra/json'
 require 'logger'
 
+require_relative 'database'
+
 module Headspace
   class Application < Sinatra::Base
     register Sinatra::Namespace
+    register Sinatra::Reloader if development?
 
     set :views, File.join(File.dirname(__FILE__), 'views')
     set :public_folder, File.join(File.dirname(__FILE__), '../../public')
@@ -28,20 +31,6 @@ module Headspace
 
     configure do
       Sequel.extension :pagination
-    end
-
-    configure :development do
-      register Sinatra::Reloader
-      set :database, Sequel.connect('postgres://apucacao@localhost/headspace_dev')
-      database.loggers = [Logger.new($stdout)]
-    end
-
-    configure :production do
-      set :database, Sequel.connect(ENV['HEADSPACE_DATABASE_URL']), :loggers => [Logger.new($stdout)]
-    end
-
-    configure :test do
-      set :database, Sequel.sqlite
     end
 
     helpers do
