@@ -10,6 +10,8 @@ gem 'pg'
 gem 'sequel'
 gem 'sequel_postgresql_triggers'
 
+gem 'pbkdf2'
+
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 
