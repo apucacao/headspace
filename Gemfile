@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'puma'
 gem 'rack', '1.3.6'
 
-gem 'sinatra', :require => 'sinatra/base'
+gem 'sinatra'
 gem 'sinatra-contrib'
 
 gem 'pg'
