@@ -25,8 +25,6 @@ module Headspace
         :approval_prompt => 'auto'
     end
 
-    use Rack::Flash, :accessorize => [:success, :notice, :error]
-
     set :page_size, 50
 
     helpers do

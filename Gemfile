@@ -12,7 +12,6 @@ gem 'sequel_postgresql_triggers'
 
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
-gem 'rack-flash'
 
 gem 'slim', '1.3.0'
 gem 'json'
