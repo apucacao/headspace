@@ -13,7 +13,7 @@ module Headspace
     register Sinatra::Namespace
     register Sinatra::Reloader if development?
 
-    set :views, File.join(File.dirname(__FILE__), 'views')
+    set :views, File.join(File.dirname(__FILE__), 'templates')
     set :public_folder, File.join(File.dirname(__FILE__), '../../public')
 
     enable :logging
