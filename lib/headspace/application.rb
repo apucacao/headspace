@@ -29,10 +29,6 @@ module Headspace
 
     set :page_size, 50
 
-    configure do
-      Sequel.extension :pagination
-    end
-
     helpers do
       include Rack::Utils
       include Sinatra::ContentFor
