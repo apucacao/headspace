@@ -6,8 +6,6 @@ require 'sinatra/namespace'
 require 'sinatra/json'
 require 'logger'
 
-Dir.glob(File.dirname(__FILE__) + "/helpers/*.rb") { |file| require file }
-
 module Headspace
   class Application < Sinatra::Base
     register Sinatra::Namespace
@@ -61,12 +59,14 @@ module Headspace
         Application.production?
       end
     end
-
-    helpers Helpers::Auth
-    helpers Helpers::Sanitation
-    helpers Helpers::Typography
-    helpers Helpers::View
   end
+
+  Dir.glob(File.dirname(__FILE__) + "/helpers/*.rb") { |file| require file }
+
+  Application.helpers Helpers::Auth
+  Application.helpers Helpers::Sanitation
+  Application.helpers Helpers::Typography
+  Application.helpers Helpers::View
 end
 
 Dir.glob(File.dirname(__FILE__) + "/routes/*.rb") { |file| require file }
