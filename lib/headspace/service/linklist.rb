@@ -1,6 +1,6 @@
 module Headspace
   module Service
-    class Stream
+    class LinkList
       def initialize(links)
         @links = links
       end
