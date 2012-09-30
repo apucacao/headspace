@@ -1,23 +1,10 @@
-ENV['RACK_ENV']
+$: << File.expand_path(File.join(File.dirname(__FILE__)))
+$: << File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib'))
+
+ENV['RACK_ENV'] = 'test'
+
+require 'minitest/spec'
+require 'minitest/autorun'
 
 require 'bundler'
-Bundler.setup
-Bundler.require(:default, :test)
-
-require_relative '../app'
-
-class TestHelper < MiniTest::Unit::TestCase
-  def app
-    App
-  end
-
-  def setup
-    DatabaseCleaner.strategy = :truncation
-    DatabaseCleaner.clean_with(:truncation)
-    DatabaseCleaner.start
-  end
-
-  def teardown
-    DatabaseCleaner.clean
-  end
-end
+Bundler.require(:test)

@@ -7,7 +7,6 @@ module Headspace
         status 400
       else
         status 200
-        puts "searching for `#{options['q']}`" if options.include?('q')
         dataset = Model::Link.send("#{dataset_name}_for", current_user)
 
         # TODO: move this into a helper
