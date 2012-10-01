@@ -5,6 +5,9 @@ ENV['RACK_ENV'] = 'test'
 
 require 'minitest/spec'
 require 'minitest/autorun'
+require 'minitest/reporters'
+
+MiniTest::Reporters.use! MiniTest::Reporters::SpecReporter.new
 
 require 'bundler'
 Bundler.require(:test)
