@@ -24,6 +24,7 @@ gem 'typogruby'
 
 group :development, :test do
   gem 'minitest'
-  gem 'rack-test'
-  gem 'database_cleaner'
+  gem 'guard'
+  gem 'guard-minitest'
+  gem 'rb-fsevent'
 end
