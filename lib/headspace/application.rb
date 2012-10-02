@@ -40,16 +40,13 @@ module Headspace
         Application.production?
       end
     end
+
+    helpers Helpers::Auth
+    helpers Helpers::Sanitation
+    helpers Helpers::Typography
+    helpers Helpers::View
   end
-
-  Dir.glob(File.dirname(__FILE__) + "/helpers/*.rb") { |file| require file }
-
-  Application.helpers Helpers::Auth
-  Application.helpers Helpers::Sanitation
-  Application.helpers Helpers::Typography
-  Application.helpers Helpers::View
 end
 
-Dir.glob(File.dirname(__FILE__) + "/model/*.rb") { |file| require file }
 Dir.glob(File.dirname(__FILE__) + "/application/*.rb") { |file| require file }
 

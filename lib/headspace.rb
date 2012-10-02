@@ -9,5 +9,9 @@ module Headspace
 end
 
 require 'headspace/database'
+
+Dir.glob(File.dirname(__FILE__) + "/headspace/helpers/*.rb") { |file| require file }
+Dir.glob(File.dirname(__FILE__) + "/headspace/model/*.rb") { |file| require file }
+
 require 'headspace/webservice'
 require 'headspace/application'
