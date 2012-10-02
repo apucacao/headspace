@@ -50,5 +50,6 @@ module Headspace
   Application.helpers Helpers::View
 end
 
-Dir.glob(File.dirname(__FILE__) + "/routes/*.rb") { |file| require file }
 Dir.glob(File.dirname(__FILE__) + "/model/*.rb") { |file| require file }
+Dir.glob(File.dirname(__FILE__) + "/application/*.rb") { |file| require file }
+
