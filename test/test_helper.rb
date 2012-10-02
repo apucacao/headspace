@@ -12,3 +12,5 @@ MiniTest::Reporters.use! MiniTest::Reporters::SpecReporter.new
 
 require 'bundler'
 Bundler.require(:test)
+
+require 'headspace'

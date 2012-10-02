@@ -8,5 +8,6 @@ $stdout.sync = true if ENV['RACK_ENV'] == 'development'
 module Headspace
 end
 
+require 'headspace/database'
 require 'headspace/webservice'
 require 'headspace/application'

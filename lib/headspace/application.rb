@@ -6,8 +6,6 @@ require 'sinatra/namespace'
 require 'sinatra/json'
 require 'logger'
 
-require_relative 'database'
-
 module Headspace
   class Application < Sinatra::Base
     register Sinatra::Namespace
