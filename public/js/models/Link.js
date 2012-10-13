@@ -4,7 +4,7 @@ define([
 
   'use strict';
 
-  var tagExp = /(^|\s)#(\w+)(?=\s|$)/g;
+  var tagExp = /(^|\s)#([\w\-]+)(?=\s|$)/g;
 
   return Backbone.Model.extend({
     url: function() {
