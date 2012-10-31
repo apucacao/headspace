@@ -10,7 +10,7 @@ define([
     page: 1,
 
     url: function() {
-      return '/links/' + (this.starredOnly ? 'starred/' : '');
+      return '/api/links/' + (this.starredOnly ? 'starred/' : '');
     },
 
     comparator: function(model) {

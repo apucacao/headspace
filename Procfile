@@ -1,1 +1,3 @@
-web: bundle exec shotgun -p 4567 -E development
+server: bundle exec puma -Ilib server.ru --port 9292
+guard: bundle exec guard
+console: irb -Ilib
