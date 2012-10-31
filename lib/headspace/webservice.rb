@@ -18,6 +18,7 @@ module Headspace
     set :page_size, 50
 
     helpers Helpers::Auth
+    helpers Helpers::Sanitation
   end
 end
 
