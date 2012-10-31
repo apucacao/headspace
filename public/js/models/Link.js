@@ -25,8 +25,6 @@ define([
       var tags = [];
       var m;
 
-      // while (m = tagExp.exec(note)) { console.log(m[1]); }
-
       var cleanNote = note.replace(tagExp, function(m, pre, tag, post) {
         tags.push(tag);
         return '';
