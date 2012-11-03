@@ -49,4 +49,3 @@ module Headspace
 end
 
 Dir.glob(File.dirname(__FILE__) + "/application/*.rb") { |file| require file }
-
