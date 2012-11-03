@@ -1,12 +1,12 @@
 define([
   'underscore', 'jquery', 'backbone', './Link',
-  'text!templates/empty-list.html'
+  'hbs!template/empty-list'
 ], function(_, $, Backbone, LinkView, emptyListTemplate) {
 
   'use strict';
 
   return Backbone.View.extend({
-    emptyListTemplate: _.template(emptyListTemplate),
+    emptyListTemplate: emptyListTemplate,
 
     initialize: function() {
       _.bindAll(this, 'render', 'addOne');
