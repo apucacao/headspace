@@ -1,13 +1,13 @@
 define([
   'underscore', 'jquery', 'backbone', './LinkList', './StarFilter', './Search',
-  './AddLink', './Status', './Pagination', 'text!templates/app.html'
+  './AddLink', './Status', './Pagination', 'hbs!template/app'
 ], function(_, $, Backbone, LinkListView, StarFilterView, SearchView,
   AddLinkView, StatusView, PaginationView, appTemplate) {
 
   'use strict';
 
   return Backbone.View.extend({
-    template: _.template(appTemplate),
+    template: appTemplate,
 
     events: {
       'click #add-link': 'addLink',

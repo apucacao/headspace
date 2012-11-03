@@ -3,6 +3,7 @@ require.config({
 
   paths: {
     'text'           : 'vendor/require.text',
+    'handlebars'     : 'vendor/handlebars-1.0.rc.1',
     'json2'          : 'vendor/json2',
     'underscore'     : 'vendor/underscore',
     'backbone'       : 'vendor/backbone',
@@ -10,7 +11,7 @@ require.config({
     'jquery.validate': 'vendor/jquery.validate',
     'jquery.timeago' : 'vendor/jquery.timeago',
     'hashgrid'       : 'vendor/hashgrid',
-    'templates'      : 'templates'
+    'template'       : 'template'
   },
 
   shim: {

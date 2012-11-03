@@ -1,5 +1,5 @@
 define([
-  'underscore', 'jquery', 'backbone', 'text!templates/link.html'
+  'underscore', 'jquery', 'backbone', 'hbs!template/link'
 ], function(_, $, Backbone, linkTemplate) {
 
   'use strict';
@@ -7,7 +7,7 @@ define([
   return Backbone.View.extend({
     className: 'link',
 
-    template: _.template(linkTemplate),
+    template: linkTemplate,
 
     events: {
       'click .star:not(.waiting)': 'toggle',
