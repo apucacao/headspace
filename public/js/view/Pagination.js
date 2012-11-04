@@ -1,6 +1,10 @@
 define([
-  'underscore', 'jquery', 'backbone'
-], function(_, $, Backbone) {
+  'underscore',
+  'jquery',
+  'backbone'
+],
+
+function(_, $, Backbone) {
 
   var delay = 750;
   var threshold = 350;

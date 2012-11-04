@@ -1,6 +1,10 @@
 define([
-  'underscore', 'jquery', 'backbone'
-], function(_, $, Backbone) {
+  'underscore',
+  'jquery',
+  'backbone'
+],
+
+function(_, $, Backbone) {
 
   return Backbone.View.extend({
     initialize: function() {

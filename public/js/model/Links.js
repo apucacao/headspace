@@ -1,6 +1,10 @@
 define([
-  'underscore', 'backbone', './Link'
-], function(_, Backbone, LinkModel) {
+  'underscore',
+  'backbone',
+  './Link'
+],
+
+function(_, Backbone, LinkModel) {
 
   'use strict';
 

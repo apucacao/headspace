@@ -1,7 +1,12 @@
 define([
-  'underscore', 'jquery', 'backbone', './Link',
+  'underscore',
+  'jquery',
+  'backbone',
+  './Link',
   'hbs!template/empty-list'
-], function(_, $, Backbone, LinkView, emptyListTemplate) {
+],
+
+function(_, $, Backbone, LinkView, emptyListTemplate) {
 
   'use strict';
 

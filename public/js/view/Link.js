@@ -1,6 +1,11 @@
 define([
-  'underscore', 'jquery', 'backbone', 'hbs!template/link'
-], function(_, $, Backbone, linkTemplate) {
+  'underscore',
+  'jquery',
+  'backbone',
+  'hbs!template/link'
+],
+
+function(_, $, Backbone, linkTemplate) {
 
   'use strict';
 
