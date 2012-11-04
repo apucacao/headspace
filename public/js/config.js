@@ -5,7 +5,7 @@ require.config({
     'text'           : 'vendor/require.text',
     'handlebars'     : 'vendor/handlebars-1.0.rc.1',
     'json2'          : 'vendor/json2',
-    'underscore'     : 'vendor/underscore',
+    'underscore'     : 'vendor/lodash',
     'backbone'       : 'vendor/backbone',
     'jquery'         : 'vendor/jquery',
     'jquery.validate': 'vendor/jquery.validate',
