@@ -17,6 +17,7 @@ gem 'omniauth-google-oauth2'
 
 gem 'slim', '1.3.0'
 gem 'handlebars'
+gem 'steering'
 gem 'json'
 gem 'sass'
 gem 'compass'
