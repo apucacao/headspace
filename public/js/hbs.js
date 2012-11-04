@@ -8,7 +8,7 @@ define(['handlebars','text'], function (Handlebars, text) {
                        );
   return {
     load: function (name, req, onLoad, config) {
-      fileName = name + '.html';
+      fileName = name + '.handlebars';
       text.get(req.toUrl(fileName), function(data) {
         if (config.isBuild) {
           _buildMap[name] = Handlebars.precompile(data);

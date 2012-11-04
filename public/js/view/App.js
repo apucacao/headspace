@@ -1,14 +1,12 @@
 define([
   'underscore', 'jquery', 'backbone', './LinkList', './StarFilter', './Search',
-  './AddLink', './Status', './Pagination', 'hbs!template/app'
+  './AddLink', './Status', './Pagination'
 ], function(_, $, Backbone, LinkListView, StarFilterView, SearchView,
-  AddLinkView, StatusView, PaginationView, appTemplate) {
+  AddLinkView, StatusView, PaginationView) {
 
   'use strict';
 
   return Backbone.View.extend({
-    template: appTemplate,
-
     events: {
       'click #add-link': 'addLink',
       'click #home': 'clear'
@@ -39,8 +37,6 @@ define([
     },
 
     render: function() {
-      this.$el.html(this.template());
-
       this.paginationView = new PaginationView({
         el: '#pagination',
         collection: this.collection

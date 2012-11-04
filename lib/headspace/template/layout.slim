@@ -35,6 +35,7 @@ html
             a#login href="/auth/google_oauth2" sign in with Google
       - if authenticated?
         div#app
+          == yield
       - else
         section role="main"
           == partial :what

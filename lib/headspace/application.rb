@@ -11,8 +11,12 @@ module Headspace
     register Sinatra::Namespace
     register Sinatra::Reloader if development?
 
-    set :views, File.join(File.dirname(__FILE__), 'templates')
+    register Handlebars
+
+    set :views, File.join(File.dirname(__FILE__), 'template')
     set :public_folder, File.join(File.dirname(__FILE__), '../../public')
+
+    set :handlebars_directory, File.join(public_folder, 'js/template')
 
     enable :logging
 
