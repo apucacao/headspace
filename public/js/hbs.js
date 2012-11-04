@@ -1,4 +1,9 @@
-define(['handlebars','text'], function (Handlebars, text) {
+define([
+  'handlebars',
+  'text'
+],
+
+function (Handlebars, text) {
 
   var _buildMap = {};
   var _buildTemplate = Handlebars.compile(

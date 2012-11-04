@@ -1,7 +1,16 @@
 define([
-  'underscore', 'jquery', 'backbone', './LinkList', './StarFilter', './Search',
-  './AddLink', './Status', './Pagination'
-], function(_, $, Backbone, LinkListView, StarFilterView, SearchView,
+  'underscore',
+  'jquery',
+  'backbone',
+  './LinkList',
+  './StarFilter',
+  './Search',
+  './AddLink',
+  './Status',
+  './Pagination'
+],
+
+function(_, $, Backbone, LinkListView, StarFilterView, SearchView,
   AddLinkView, StatusView, PaginationView) {
 
   'use strict';

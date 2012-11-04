@@ -1,6 +1,12 @@
 define([
-  'underscore', 'jquery', 'backbone', 'model/Links', 'view/App'
-], function(_, $, Backbone, LinkCollection, AppView) {
+  'underscore',
+  'jquery',
+  'backbone',
+  'model/Links',
+  'view/App'
+],
+
+function(_, $, Backbone, LinkCollection, AppView) {
 
   'use strict';
 
