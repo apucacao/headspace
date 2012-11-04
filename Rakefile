@@ -27,7 +27,7 @@ namespace :db do
     Rake::Task[:environment].invoke(env)
 
     require 'sequel/extensions/migration'
-    Sequel::Migrator.apply(Headspace::Application.database, File.join(File.dirname(__FILE__), 'migrations'))
+    Sequel::Migrator.apply(Headspace::DB, File.join(File.dirname(__FILE__), 'migrations'))
   end
 
   desc 'Setup database triggers'
@@ -35,13 +35,13 @@ namespace :db do
     env = args[:env] || 'development'
     Rake::Task[:environment].invoke(env)
 
-    Headspace::Application.database.pgt_created_at(:users, :created_at)
-    Headspace::Application.database.pgt_updated_at(:users, :updated_at)
+    Headspace::DB.pgt_created_at(:users, :created_at)
+    Headspace::DB.pgt_updated_at(:users, :updated_at)
 
-    Headspace::Application.database.pgt_created_at(:links, :created_at)
-    Headspace::Application.database.pgt_updated_at(:links, :updated_at)
+    Headspace::DB.pgt_created_at(:links, :created_at)
+    Headspace::DB.pgt_updated_at(:links, :updated_at)
 
-    Headspace::Application.database.pgt_created_at(:starred_links, :created_at)
+    Headspace::DB.pgt_created_at(:starred_links, :created_at)
   end
 
   desc 'Drop all tables'
@@ -49,8 +49,8 @@ namespace :db do
     env = args[:env] || 'development'
     Rake::Task[:environment].invoke(env)
 
-    Headspace::Application.database.tables.each do |table|
-      Headspace::Application.database << "DROP TABLE #{table} CASCADE"
+    Headspace::DB.tables.each do |table|
+      Headspace::DB << "DROP TABLE #{table} CASCADE"
     end
   end
 
